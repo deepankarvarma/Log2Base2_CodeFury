@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+
+        .sort-icon {
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 0.5rem;
+        }
+
+        .sort-icon.asc {
+            transform: rotate(180deg);
+        }
+
+        footer {
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-gray-800">
+    <header class="bg-teal-600 text-white text-center py-6">
+        <h1 class="text-3xl font-bold">Order History</h1>
+    </header>
+
+    <nav class="bg-white shadow-lg rounded-lg p-4 mb-8 flex justify-around items-center">
+        <a class="py-2 px-4 rounded-lg bg-teal-500 text-white hover:bg-teal-600" href="admin_dashboard.html">Dashboard (Admin)</a>
+        <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="customer_dashboard.html">Dashboard (Customer)</a>
+        <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="browse_products.html">Browse Products</a>
+        <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="my_subscriptions.html">My Subscriptions</a>
+    </nav>
+
+    <div class="container mx-auto my-12 px-4">
+        <div class="flex flex-wrap">
+            <main class="w-full">
+                <h2 class="text-2xl font-semibold mb-6 text-teal-700">Order History</h2>
+                <div class="overflow-x-auto bg-white shadow-lg rounded-lg p-6">
+                    <table class="min-w-full text-left table-auto">
+                        <thead>
+                            <tr class="bg-teal-100 text-teal-900">
+                                <th class="py-3 px-6 text-teal-900 font-semibold">
+                                    Order ID
+                                    <span class="sort-icon" onclick="sortTable(0)">▲</span>
+                                </th>
+                                <th class="py-3 px-6 text-teal-900 font-semibold">
+                                    Product
+                                    <span class="sort-icon" onclick="sortTable(1)">▲</span>
+                                </th>
+                                <th class="py-3 px-6 text-teal-900 font-semibold">
+                                    Date
+                                    <span class="sort-icon" onclick="sortTable(2)">▲</span>
+                                </th>
+                                <th class="py-3 px-6 text-teal-900 font-semibold">
+                                    Status
+                                    <span class="sort-icon" onclick="sortTable(3)">▲</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderTable">
+                            <tr>
+                                <td class="py-3 px-6 border-b">1001</td>
+                                <td class="py-3 px-6 border-b">Organic Apples</td>
+                                <td class="py-3 px-6 border-b">Aug 10, 2024</td>
+                                <td class="py-3 px-6 border-b"><span class="inline-block bg-green-500 text-white px-3 py-1 rounded-full text-sm">Delivered</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-6 border-b">1002</td>
+                                <td class="py-3 px-6 border-b">Mixed Vegetables</td>
+                                <td class="py-3 px-6 border-b">Aug 12, 2024</td>
+                                <td class="py-3 px-6 border-b"><span class="inline-block bg-yellow-500 text-white px-3 py-1 rounded-full text-sm">Pending</span></td>
+                            </tr>
+                            <!-- Add more orders as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Freshly Delivered</p>
+    </footer>
+
+    <script>
+        let sortOrder = 1; // 1 for ascending, -1 for descending
+
+        function sortTable(columnIndex) {
+            const table = document.getElementById("orderTable");
+            const rows = Array.from(table.rows);
+
+            rows.sort((a, b) => {
+                const cellA = a.cells[columnIndex].innerText;
+                const cellB = b.cells[columnIndex].innerText;
+
+                if (!isNaN(Date.parse(cellA))) {
+                    return (new Date(cellA) - new Date(cellB)) * sortOrder;
+                } else if (!isNaN(cellA) && !isNaN(cellB)) {
+                    return (cellA - cellB) * sortOrder;
+                } else {
+                    return cellA.localeCompare(cellB) * sortOrder;
+                }
+            });
+
+            sortOrder *= -1; // Toggle sort order
+
+            rows.forEach(row => table.appendChild(row));
+        }
+    </script>
+</body>
+
+</html>
