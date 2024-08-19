@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Delivery List</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+
+        footer {
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-gray-800">
+    <header class="bg-teal-600 text-white text-center py-6">
+        <h1 class="text-3xl font-bold">Daily Delivery List</h1>
+    </header>
+    <!-- Navigation Section -->
+    <nav class="bg-white shadow-lg rounded-lg p-4 mb-8 flex justify-around items-center">
+        <a class="py-2 px-4 rounded-lg bg-teal-500 text-white hover:bg-teal-600" href="admin_dashboard.html">Dashboard (Admin)</a>
+        <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="customer_dashboard.html">Dashboard (Customer)</a>
+        <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="browse_products.html">Browse Products</a>
+        <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="my_subscriptions.html">My Subscriptions</a>
+    </nav>
+    <div class="container mx-auto my-12 px-4">
+        <div class="flex flex-wrap -mx-4">
+            <!-- Main Content Section -->
+            <main class="w-full">
+                <h2 class="text-2xl font-semibold mb-6 text-teal-700">Deliveries for Aug 15, 2024</h2>
+                <div class="overflow-x-auto bg-white shadow-lg rounded-lg p-6">
+                    <table id="deliveryTable" class="min-w-full text-left table-auto">
+                        <thead>
+                            <tr class="bg-teal-100 text-teal-900">
+                                <th class="py-3 px-6 text-teal-900 font-semibold cursor-pointer" onclick="sortTable()">Customer
+                                    <span class="sort-icon" onclick="sortTable(0)">▲</span></th>
+                                <th class="py-3 px-6 text-teal-900 font-semibold">Product</th>
+                                <th class="py-3 px-6 text-teal-900 font-semibold">Quantity</th>
+                                <th class="py-3 px-6 text-teal-900 font-semibold">Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="py-3 px-6">John Doe</td>
+                                <td class="py-3 px-6">Organic Apples</td>
+                                <td class="py-3 px-6">1 Box</td>
+                                <td class="py-3 px-6">123 Elm St, Springfield</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 px-6">Jane Smith</td>
+                                <td class="py-3 px-6">Mixed Vegetables</td>
+                                <td class="py-3 px-6">2 Boxes</td>
+                                <td class="py-3 px-6">456 Oak St, Springfield</td>
+                            </tr>
+                            <!-- Add more deliveries as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Freshly Delivered</p>
+    </footer>
+
+    <!-- JavaScript for Sorting -->
+    <script>
+        function sortTable() {
+            const table = document.getElementById('deliveryTable');
+            const rows = Array.from(table.querySelectorAll('tbody tr'));
+            const header = table.querySelector('thead th');
+            const currentSort = header.getAttribute('data-sort') || 'asc';
+
+            const newSort = currentSort === 'asc' ? 'desc' : 'asc';
+            header.setAttribute('data-sort', newSort);
+
+            rows.sort((a, b) => {
+                const aText = a.cells[0].textContent.trim();
+                const bText = b.cells[0].textContent.trim();
+
+                if (aText < bText) return newSort === 'asc' ? -1 : 1;
+                if (aText > bText) return newSort === 'asc' ? 1 : -1;
+                return 0;
+            });
+
+            rows.forEach(row => table.querySelector('tbody').appendChild(row));
+        }
+    </script>
+</body>
+
+</html>
