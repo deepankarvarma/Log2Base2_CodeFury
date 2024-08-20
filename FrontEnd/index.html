@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freshly Delivered - Subscription-based E-Commerce</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+   .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.menu-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.menu-content {
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    width: 80%;
+    max-width: 400px;
+    transform: translateY(-20px);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+}
+
+.menu-overlay.open .menu-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.menu-close {
+    cursor: pointer;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: white;
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans antialiased flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
+            <nav class="bg-white flex items-center">
+                <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="register.html">Register</a>
+                &nbsp;
+                <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="login.html">Login</a>
+                &nbsp;
+                &nbsp;
+                <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto mt-12 px-6 flex-grow">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-4">Get Fresh Food Delivered Regularly!</h2>
+            <p class="text-lg text-gray-600">Sign up now for our subscription service and never run out of your favorite food items.</p>
+        </div>
+
+        <!-- Feature Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                <h3 class="text-2xl font-bold text-teal-600 mb-4">Fresh Produce</h3>
+                <p class="text-gray-600 mb-6">Receive fresh fruits and vegetables delivered to your doorstep every week.</p>
+                <button class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">Subscribe Now</button>
+            </div>
+
+            <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                <h3 class="text-2xl font-bold text-teal-600 mb-4">Dairy Products</h3>
+                <p class="text-gray-600 mb-6">Enjoy a weekly supply of fresh milk, cheese, and other dairy products.</p>
+                <button class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">Subscribe Now</button>
+            </div>
+
+            <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                <h3 class="text-2xl font-bold text-teal-600 mb-4">Bakery Items</h3>
+                <p class="text-gray-600 mb-6">Get freshly baked bread, cakes, and pastries delivered daily.</p>
+                <button class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">Subscribe Now</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-2 text-center">
+            <p>&copy; 2024 Freshly Delivered</p>
+        </div>
+    </footer>
+
+    <!-- Full Screen Menu -->
+    <div id="menu-overlay" class="menu-overlay">
+        <div class="menu-content">
+            <span id="menu-close" class="menu-close"></span>
+            <nav>
+                <a class="block py-2 text-xl hover:text-teal-500" href="register.html">Register</a>
+                <a class="block py-2 text-xl hover:text-teal-500" href="login.html">Login</a>
+                <a class="block py-2 text-xl hover:text-teal-500" href="about.html">About Us</a>
+                <a class="block py-2 text-xl hover:text-teal-500" href="contact.html">Contact Us</a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuClose = document.getElementById('menu-close');
+
+        hamburgerMenu.addEventListener('click', () => {
+            menuOverlay.classList.add('open');
+        });
+
+        menuClose.addEventListener('click', () => {
+            menuOverlay.classList.remove('open');
+        });
+
+        menuOverlay.addEventListener('click', (e) => {
+            if (e.target === menuOverlay) {
+                menuOverlay.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+
+</html>
