@@ -8,6 +8,74 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Default light mode styles */
+body {
+    background-color: #f9fafb;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;    
+}
+
+.bg-gray-800 {
+    background-color: #2d3748;
+}
+
+.bg-gray-900 {
+    background-color: #1a202c;
+}
+
+.text-gray-100 {
+    color: #f7fafc;
+}
+
+.text-gray-300 {
+    color: #e2e8f0;
+}
+
+.text-gray-400 {
+    color: #cbd5e0;
+}
+
+.bg-teal-500 {
+    background-color: #38b2ac;
+}
+
+.bg-teal-600 {
+    background-color: #319795;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}
+
+body.dark-mode .bg-white {
+    background-color: #2d3748;
+}
+
+body.dark-mode .text-gray-600 {
+    color: #e2e8f0;
+}
+
+body.dark-mode .text-teal-600 {
+    color: #81e6d9;
+}
+
+
+
+/* Add styles for the toggle button */
+#theme-toggle {
+    cursor: pointer;
+}
+
+#theme-icon {
+    transition: transform 0.3s ease;
+}
+
+body.dark-mode #theme-icon {
+    transform: rotate(180deg);
+}
+
        nav a {
     position: relative;
     text-decoration: none;
@@ -139,11 +207,6 @@ nav a:hover {
             
             <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
             <nav class="bg-white flex items-center">
-                <!-- <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="register.html">Register</a>
-                &nbsp;
-                <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="login.html">Login</a>
-                &nbsp;
-                &nbsp; -->
                 <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -151,14 +214,22 @@ nav a:hover {
                             d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
+                <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
+                    <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v9l4 4"></path>
+                    </svg>
+                </button>
             </nav>
+            
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container mx-auto mt-12 px-6 flex-grow fade-slide-in">
         <div class="text-center mb-12">
-            <h2 class="text-4xl font-extrabold text-gray-800 mb-4">Get Fresh Food Delivered Regularly!</h2>
+            <h2 class="text-4xl font-extrabold text-gray-600 mb-4">Get Fresh Food Delivered Regularly!</h2>
             <p class="text-lg text-gray-600">Sign up now for our subscription service and never run out of your favorite food items.</p>
         </div>
 
@@ -241,6 +312,31 @@ nav a:hover {
             element.classList.add('loaded');
         });
     }, 1500);  // 1500 milliseconds = 1.5 seconds
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const themeIcon = document.getElementById('theme-icon');
+    const themePath = document.getElementById('theme-path');
+
+    // Load saved theme from local storage or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        body.classList.add('dark-mode');
+        themePath.setAttribute('d', 'M12 3v9l4 4');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+            themePath.setAttribute('d', 'M12 3v9l4 4');
+        } else {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+            themePath.setAttribute('d', 'M12 3v9l4 4');
+        }
+    });
 });
 
     </script>
