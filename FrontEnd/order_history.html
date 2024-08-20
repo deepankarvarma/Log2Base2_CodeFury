@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order History</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -124,11 +126,14 @@
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
             <nav class="bg-white flex items-center">
-                <!-- <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="register.html">Register</a>
-                &nbsp;
-                <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="login.html">Login</a>
-                &nbsp;
-                &nbsp; -->
+                <!-- Logout Button with Logo -->
+                <button id="logout-button" class="flex items-center text-teal-600 bg-teal-100 px-4 py-2 rounded-lg hover:bg-teal-200">
+                    <i class="fas fa-sign-out-alt mr-2"></i>
+                    Logout
+                </button>
+                &nbsp; &nbsp;
+                
+                <!-- Hamburger Menu Button -->
                 <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -139,7 +144,6 @@
             </nav>
         </div>
     </header>
-
     <div class="container mx-auto my-12 px-4">
         <div class="flex flex-wrap">
             <main class="w-full">
@@ -206,7 +210,10 @@
         const hamburgerMenu = document.getElementById('hamburger-menu');
         const menuOverlay = document.getElementById('menu-overlay');
         const menuClose = document.getElementById('menu-close');
-
+        const logoutButton = document.getElementById('logout-button');
+        logoutButton.addEventListener('click', () => {
+    window.location.href = 'index.html';
+});
         hamburgerMenu.addEventListener('click', () => {
             menuOverlay.classList.add('open');
         });
