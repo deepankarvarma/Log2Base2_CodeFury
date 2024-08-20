@@ -1,44 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Subscriptions</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+
+        footer {
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .menu-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .menu-content {
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            width: 80%;
+            max-width: 400px;
+            transform: translateY(-20px);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+
+        .menu-overlay.open .menu-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .menu-close {
+            cursor: pointer;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: white;
+            z-index: 1000;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>My Subscriptions</h1>
-    </header>
-    <div class="container">
-        <aside>
-            <nav>
-                <ul>
-                    <li><a href="customer_dashboard.html">Dashboard</a></li>
-                    <li><a href="browse_products.html">Browse Products</a></li>
-                    <li><a href="order_history.html">Order History</a></li>
-                </ul>
+
+<body class="font-sans antialiased text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
+            <nav class="bg-white flex items-center">
+                <!-- Logout Button with Logo -->
+                <button id="logout-button" class="flex items-center text-teal-600 bg-teal-100 px-4 py-2 rounded-lg hover:bg-teal-200">
+                    <i class="fas fa-sign-out-alt mr-2"></i>
+                    Logout
+                </button>
+                &nbsp; &nbsp;
+                
+                <!-- Hamburger Menu Button -->
+                <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </nav>
-        </aside>
-        <main>
-            <h2>Active Subscriptions</h2>
-            <div class="subscription-list">
-                <div class="subscription">
-                    <h3>Organic Apples</h3>
-                    <p>Next delivery: Aug 18, 2024</p>
-                    <button>Cancel Subscription</button>
+        </div>
+    </header>
+
+    <div class="container mx-auto my-12 px-4">
+        <div class="flex flex-wrap -mx-4">
+            <!-- Sidebar Section
+            <aside class="w-full md:w-1/4 px-4 mb-4 md:mb-0">
+                <nav class="bg-white shadow-lg rounded-lg p-6">
+                    <ul>
+                        <li class="mb-4">
+                            <a class="text-teal-600 hover:text-teal-800" href="customer_dashboard.html">Dashboard</a>
+                        </li>
+                        <li class="mb-4">
+                            <a class="text-teal-600 hover:text-teal-800" href="browse_products.html">Browse Products</a>
+                        </li>
+                        <li>
+                            <a class="text-teal-600 hover:text-teal-800" href="order_history.html">Order History</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside> -->
+
+            <!-- Main Content Section -->
+            <main class="w-full md:w-3/4 px-4">
+                <h2 class="text-2xl font-semibold mb-6 text-teal-700">Active Subscriptions</h2>
+                <div class="flex flex-wrap gap-6">
+                    <div class="subscription bg-white shadow-lg rounded-lg p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-teal-700">Organic Apples</h3>
+                        <p class="text-gray-700 mb-4">Next delivery: Aug 18, 2024</p>
+                        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Cancel Subscription</button>
+                    </div>
+                    <div class="subscription bg-white shadow-lg rounded-lg p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-teal-700">Mixed Vegetables</h3>
+                        <p class="text-gray-700 mb-4">Next delivery: Aug 20, 2024</p>
+                        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Cancel Subscription</button>
+                    </div>
+                    <!-- Add more subscriptions as needed -->
                 </div>
-                <div class="subscription">
-                    <h3>Mixed Vegetables</h3>
-                    <p>Next delivery: Aug 20, 2024</p>
-                    <button>Cancel Subscription</button>
-                </div>
-                <!-- Add more subscriptions as needed -->
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
+
     <footer>
         <p>&copy; 2024 Freshly Delivered</p>
     </footer>
+
+    <!-- Full Screen Menu -->
+    <div id="menu-overlay" class="menu-overlay">
+        <div class="menu-content">
+            <span id="menu-close" class="menu-close"></span>
+            <nav>
+                <a class="block py-2 text-xl hover:text-teal-500" href="customer_dashboard.html">Dashboard</a>
+                <a class="block py-2 text-xl hover:text-teal-500" href="browse_products.html">Browse Products</a>
+                <a class="block py-2 text-xl hover:text-teal-500" href="order_history.html">Order History</a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuClose = document.getElementById('menu-close');
+        const logoutButton = document.getElementById('logout-button');
+        
+        logoutButton.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+        
+        hamburgerMenu.addEventListener('click', () => {
+            menuOverlay.classList.add('open');
+        });
+
+        menuClose.addEventListener('click', () => {
+            menuOverlay.classList.remove('open');
+        });
+
+        menuOverlay.addEventListener('click', (e) => {
+            if (e.target === menuOverlay) {
+                menuOverlay.classList.remove('open');
+            }
+        });
+    </script>
 </body>
+
 </html>
