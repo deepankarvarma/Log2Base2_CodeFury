@@ -8,6 +8,76 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+       nav a {
+    position: relative;
+    text-decoration: none;
+    font-weight: normal; /* Default font weight */
+    transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+nav a:hover {
+    color: #38b2ac; /* Tailwind's teal-500 */
+    font-weight: 600; /* Semi-bold font weight */
+} 
+        .loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensures it's above other content */
+    
+}
+
+.loader {
+    display: inline-flex;
+    gap: 5px;
+}
+
+.loader:before,
+.loader:after {
+    content: "";
+    width: 25px;
+    aspect-ratio: 1;
+    box-shadow: 0 0 0 3px inset #fff;
+    animation: l5 1.5s infinite;
+}
+
+.loader:after {
+    --s: -1;
+}
+
+@keyframes l5 {
+    0% {
+        transform: scaleX(var(--s, 1)) translate(0) scale(1);
+    }
+    33% {
+        transform: scaleX(var(--s, 1)) translate(calc(50% + 2.5px)) scale(1);
+    }
+    66% {
+        transform: scaleX(var(--s, 1)) translate(calc(50% + 2.5px)) scale(2);
+    }
+    100% {
+        transform: scaleX(var(--s, 1)) translate(0) scale(1);
+    }
+}
+
+/* Page content animation */
+.fade-slide-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-slide-in.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
    .menu-overlay {
     position: fixed;
     top: 0;
@@ -60,9 +130,13 @@
 </head>
 
 <body class="bg-gray-50 font-sans antialiased flex flex-col min-h-screen">
+    <div class="loader-overlay">
+        <div class="loader"></div>
+    </div>
     <!-- Header -->
-    <header class="bg-white shadow-sm">
+    <header class="bg-white shadow-sm fade-slide-in">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
             <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
             <nav class="bg-white flex items-center">
                 <!-- <a class="py-2 px-4 rounded-lg hover:bg-teal-100" href="register.html">Register</a>
@@ -82,7 +156,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto mt-12 px-6 flex-grow">
+    <main class="container mx-auto mt-12 px-6 flex-grow fade-slide-in">
         <div class="text-center mb-12">
             <h2 class="text-4xl font-extrabold text-gray-800 mb-4">Get Fresh Food Delivered Regularly!</h2>
             <p class="text-lg text-gray-600">Sign up now for our subscription service and never run out of your favorite food items.</p>
@@ -122,10 +196,10 @@
         <div class="menu-content">
             <span id="menu-close" class="menu-close"></span>
             <nav>
-                <a class="block py-2 text-xl hover:text-teal-500" href="register.html">Register</a>
-                <a class="block py-2 text-xl hover:text-teal-500" href="login.html">Login</a>
-                <a class="block py-2 text-xl hover:text-teal-500" href="about.html">About Us</a>
-                <a class="block py-2 text-xl hover:text-teal-500" href="contact.html">Contact Us</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="register.html">Register</a>
+                <a class="block py-3 text-2xl  hover:text-teal-500" href="login.html">Login</a>
+                <a class="block py-3 text-2xl  hover:text-teal-500" href="about.html">About Us</a>
+                <a class="block py-3 text-2xl hover:text-teal-500" href="contact.html">Contact Us</a>
             </nav>
         </div>
     </div>
@@ -148,6 +222,27 @@
                 menuOverlay.classList.remove('open');
             }
         });
+        window.addEventListener('load', () => {
+            const loaderOverlay = document.querySelector('.loader-overlay');
+
+            setTimeout(() => {
+                loaderOverlay.style.display = 'none';
+            }, 1500);  // 1500 milliseconds = 1.5 seconds
+        });
+        window.addEventListener('load', () => {
+    const loaderOverlay = document.querySelector('.loader-overlay');
+    const content = document.querySelectorAll('.fade-slide-in');
+
+    setTimeout(() => {
+        loaderOverlay.style.display = 'none';
+        
+        // Trigger the content animation after loader disappears
+        content.forEach(element => {
+            element.classList.add('loaded');
+        });
+    }, 1500);  // 1500 milliseconds = 1.5 seconds
+});
+
     </script>
 </body>
 
