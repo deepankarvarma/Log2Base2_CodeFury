@@ -10,6 +10,17 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+               nav a {
+    position: relative;
+    text-decoration: none;
+    font-weight: normal; /* Default font weight */
+    transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+nav a:hover {
+    color: #38b2ac; /* Tailwind's teal-500 */
+    font-weight: 600; /* Semi-bold font weight */
+} 
        .menu-overlay {
          position: fixed;
          top: 0;
@@ -56,9 +67,71 @@
          color: white;
          z-index: 1000; /* Ensure it appears above other elements */
      }
-        body {
-            background-color: #f5f7fa;
-        }
+     body {
+
+background-color: #f9fafb;
+
+color: #333;
+
+transition: background-color 0.3s ease, color 0.3s ease;    
+
+}
+        .bg-gray-800 {
+    background-color: #2d3748;
+}
+
+.bg-gray-900 {
+    background-color: #1a202c;
+}
+
+.text-gray-100 {
+    color: #f7fafc;
+}
+
+.text-gray-300 {
+    color: #e2e8f0;
+}
+
+.text-gray-400 {
+    color: #cbd5e0;
+}
+
+.bg-teal-500 {
+    background-color: #38b2ac;
+}
+
+.bg-teal-600 {
+    background-color: #319795;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}
+
+body.dark-mode .bg-white {
+    background-color: #2d3748;
+}
+
+body.dark-mode .text-gray-600 {
+    color: #e2e8f0;
+}
+
+body.dark-mode .text-teal-600 {
+    color: #81e6d9;
+}
+
+
+
+/* Add styles for the toggle button */
+#theme-toggle {
+    cursor: pointer;
+}
+
+#theme-icon {
+    transition: transform 0.3s ease;
+}
 
         footer {
             background-color: #1a202c;
@@ -74,8 +147,9 @@
 
 <body class="font-sans antialiased text-gray-800">
     <!-- Header -->
-    <header class="bg-white shadow-sm">
+    <header class="bg-white shadow-sm fade-slide-in">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
             <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
             <nav class="bg-white flex items-center">
                 <!-- Logout Button with Logo -->
@@ -85,7 +159,6 @@
                 </button>
                 &nbsp; &nbsp;
                 
-                <!-- Hamburger Menu Button -->
                 <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -93,7 +166,15 @@
                             d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
+                <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
+                    <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v9l4 4"></path>
+                    </svg>
+                </button>
             </nav>
+            
         </div>
     </header>
 
@@ -142,11 +223,11 @@
         <div class="menu-content">
             <span id="menu-close" class="menu-close"></span>
             <nav>
-                <a class="block py-2 text-xl hover:text-teal-500" href="manage_products.html">Manage Products</a>
-                <a class="block py-2 text-xl hover:text-teal-500" href="view_subscriptions.html">View Subscriptions</a>
-                <a class="block py-2 text-xl hover:text-teal-500" href="order_history.html">Order History</a>
-                <a class="block py-2 text-xl hover:text-teal-500" href="about.html">About Us</a>
-                <a class="block py-2 text-xl hover:text-teal-500" href="contact.html">Contact Us</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="manage_products.html">Manage Products</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="view_subscriptions.html">View Subscriptions</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="order_history.html">Order History</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="about.html">About Us</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="contact.html">Contact Us</a>
             </nav>
         </div>
     </div>
@@ -193,7 +274,35 @@
 
             rows.forEach(row => table.querySelector('tbody').appendChild(row));
         }
+        
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      const themePath = document.getElementById('theme-path');
+  
+      // Load saved theme from local storage or default to light mode
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      if (currentTheme === 'dark') {
+          body.classList.add('dark-mode');
+          themePath.setAttribute('d', 'M12 3v9l4 4');
+      }
+  
+      themeToggle.addEventListener('click', () => {
+          if (body.classList.contains('dark-mode')) {
+              body.classList.remove('dark-mode');
+              localStorage.setItem('theme', 'light');
+              themePath.setAttribute('d', 'M12 3v9l4 4');
+          } else {
+              body.classList.add('dark-mode');
+              localStorage.setItem('theme', 'dark');
+              themePath.setAttribute('d', 'M12 3v9l4 4');
+          }
+      });
+  });
+     </script>
 </body>
 
 </html>

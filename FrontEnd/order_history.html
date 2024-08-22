@@ -10,6 +10,17 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+               nav a {
+    position: relative;
+    text-decoration: none;
+    font-weight: normal; /* Default font weight */
+    transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+nav a:hover {
+    color: #38b2ac; /* Tailwind's teal-500 */
+    font-weight: 600; /* Semi-bold font weight */
+} 
          .menu-overlay {
          position: fixed;
          top: 0;
@@ -56,84 +67,81 @@
          color: white;
          z-index: 1000; /* Ensure it appears above other elements */
      }
-        body {
-            background-color: #f5f7fa;
-            transition: background-color 0.3s ease;
-        }
+     body {
 
-        body.dark {
-            background-color: #2d3748;
-            color: #e2e8f0;
-        }
+background-color: #f9fafb;
 
-        .sort-icon {
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: 0.5rem;
-        }
+color: #333;
 
-        .sort-icon.asc {
-            transform: rotate(180deg);
-        }
+transition: background-color 0.3s ease, color 0.3s ease;    
 
-        footer {
-            background-color: #1a202c;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            padding: 10px 0;
-        }
+}
+        .bg-gray-800 {
+    background-color: #2d3748;
+}
 
-        footer.dark {
-            background-color: #2d3748;
-            color: #e2e8f0;
-        }
+.bg-gray-900 {
+    background-color: #1a202c;
+}
 
-        .dark header {
-            background-color: #4a5568;
-        }
+.text-gray-100 {
+    color: #f7fafc;
+}
 
-        .dark nav {
-            background-color: #4a5568;
-        }
+.text-gray-300 {
+    color: #e2e8f0;
+}
 
-        .dark nav a {
-            color: #e2e8f0;
-        }
+.text-gray-400 {
+    color: #cbd5e0;
+}
 
-        .dark nav a:hover {
-            background-color: #718096;
-        }
+.bg-teal-500 {
+    background-color: #38b2ac;
+}
 
-        .dark .table-container {
-            background-color: #4a5568;
-        }
+.bg-teal-600 {
+    background-color: #319795;
+}
 
-        .dark .sort-icon {
-            color: #e2e8f0;
-        }
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}
+
+body.dark-mode .bg-white {
+    background-color: #2d3748;
+}
+
+body.dark-mode .text-gray-600 {
+    color: #e2e8f0;
+}
+
+body.dark-mode .text-teal-600 {
+    color: #81e6d9;
+}
+
+
+
+/* Add styles for the toggle button */
+#theme-toggle {
+    cursor: pointer;
+}
+
+#theme-icon {
+    transition: transform 0.3s ease;
+}
     </style>
 </head>
 
 <body class="font-sans antialiased text-gray-800">
     <!-- Header -->
-    <header class="bg-white shadow-sm">
+    <header class="bg-white shadow-sm fade-slide-in">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
             <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
             <nav class="bg-white flex items-center">
-                <!-- Logout Button with Logo -->
-                <button id="logout-button" class="flex items-center text-teal-600 bg-teal-100 px-4 py-2 rounded-lg hover:bg-teal-200">
-                    <i class="fas fa-sign-out-alt mr-2"></i>
-                    Logout
-                </button>
-                &nbsp; &nbsp;
-                
-                <!-- Hamburger Menu Button -->
                 <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -141,9 +149,18 @@
                             d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
+                <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
+                    <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v9l4 4"></path>
+                    </svg>
+                </button>
             </nav>
+            
         </div>
     </header>
+    
     <div class="container mx-auto my-12 px-4">
         <div class="flex flex-wrap">
             <main class="w-full">
@@ -199,10 +216,10 @@
         <div class="menu-content">
             <span id="menu-close" class="menu-close"></span>
             <nav>
-                <a class="block py-2 text-xl hover:text-teal-500" href="browse_products.html">Browse Products</a>
-                <a class="block py-2 text-xl hover:text-teal-500" href="delivery_list.html">Delivery List</a>
-                <a class="block py-2 text-xl hover:text-teal-500" href="my_subscriptions.html">My Subscriptions</a>
-                <a class="block py-2 text-xl hover:text-teal-500" href="contact.html">Contact Us</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="browse_products.html">Browse Products</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="delivery_list.html">Delivery List</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="my_subscriptions.html">My Subscriptions</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="contact.html">Contact Us</a>
             </nav>
         </div>
     </div>
@@ -214,19 +231,7 @@
         logoutButton.addEventListener('click', () => {
     window.location.href = 'index.html';
 });
-        hamburgerMenu.addEventListener('click', () => {
-            menuOverlay.classList.add('open');
-        });
-
-        menuClose.addEventListener('click', () => {
-            menuOverlay.classList.remove('open');
-        });
-
-        menuOverlay.addEventListener('click', (e) => {
-            if (e.target === menuOverlay) {
-                menuOverlay.classList.remove('open');
-            }
-        });
+        
         let sortOrder = 1; // 1 for ascending, -1 for descending
 
         function sortTable(columnIndex) {
@@ -251,29 +256,35 @@
             rows.forEach(row => table.appendChild(row));
         }
 
-        const themeToggleBtn = document.getElementById("theme-toggle");
-
-        function applyTheme(theme) {
-            document.body.classList.toggle('dark', theme === 'dark');
-            document.querySelector('header').classList.toggle('dark', theme === 'dark');
-            document.querySelector('nav').classList.toggle('dark', theme === 'dark');
-            document.querySelector('footer').classList.toggle('dark', theme === 'dark');
-            document.querySelector('.table-container').classList.toggle('dark', theme === 'dark');
-            localStorage.setItem('theme', theme);
-        }
-
-        themeToggleBtn.addEventListener("click", () => {
-            const currentTheme = localStorage.getItem("theme");
-            const newTheme = currentTheme === "dark" ? "light" : "dark";
-            applyTheme(newTheme);
-        });
-
-        // Apply theme on page load
-        document.addEventListener("DOMContentLoaded", () => {
-            const savedTheme = localStorage.getItem("theme") || "light";
-            applyTheme(savedTheme);
-        });
+        
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      const themePath = document.getElementById('theme-path');
+  
+      // Load saved theme from local storage or default to light mode
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      if (currentTheme === 'dark') {
+          body.classList.add('dark-mode');
+          themePath.setAttribute('d', 'M12 3v9l4 4');
+      }
+  
+      themeToggle.addEventListener('click', () => {
+          if (body.classList.contains('dark-mode')) {
+              body.classList.remove('dark-mode');
+              localStorage.setItem('theme', 'light');
+              themePath.setAttribute('d', 'M12 3v9l4 4');
+          } else {
+              body.classList.add('dark-mode');
+              localStorage.setItem('theme', 'dark');
+              themePath.setAttribute('d', 'M12 3v9l4 4');
+          }
+      });
+  });
+     </script>
 </body>
 
 </html>

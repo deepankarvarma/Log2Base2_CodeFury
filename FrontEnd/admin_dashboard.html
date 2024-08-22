@@ -10,10 +10,76 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            background-color: #f5f7fa;
-        }
+        
+body {
 
+background-color: #f9fafb;
+
+color: #333;
+
+transition: background-color 0.3s ease, color 0.3s ease;    
+
+}
+        .bg-gray-800 {
+    background-color: #2d3748;
+}
+
+.bg-gray-900 {
+    background-color: #1a202c;
+}
+
+.text-gray-100 {
+    color: #f7fafc;
+}
+
+.text-gray-300 {
+    color: #e2e8f0;
+}
+
+.text-gray-400 {
+    color: #cbd5e0;
+}
+
+.bg-teal-500 {
+    background-color: #38b2ac;
+}
+
+.bg-teal-600 {
+    background-color: #319795;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}
+
+body.dark-mode .bg-white {
+    background-color: #2d3748;
+}
+
+body.dark-mode .text-gray-600 {
+    color: #e2e8f0;
+}
+
+body.dark-mode .text-teal-600 {
+    color: #81e6d9;
+}
+
+
+
+/* Add styles for the toggle button */
+#theme-toggle {
+    cursor: pointer;
+}
+
+#theme-icon {
+    transition: transform 0.3s ease;
+}
+
+body.dark-mode #theme-icon {
+    transform: rotate(180deg);
+}
         footer {
             background-color: #1a202c;
             color: white;
@@ -85,8 +151,14 @@
                     <i class="fas fa-sign-out-alt mr-2"></i>
                     Logout
                 </button>
-                &nbsp; &nbsp;
-                
+                <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
+                    
+                    <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v9l4 4"></path>
+                    </svg>
+                </button>
                 
             </nav>
         </div>
@@ -97,7 +169,7 @@
             <div class="flex flex-wrap -mx-4">
                 <aside class="w-full md:w-1/4 mb-8 md:mb-0 px-4">
                     <nav class="bg-white shadow-lg p-6 rounded-lg">
-                        <a class="block py-2 px-4 rounded-lg bg-teal-500 text-white mb-2" href="manage_products.html">Manage Products</a>
+                        <a class="block py-2 px-4 rounded-lg hover:bg-teal-100 mb-2" href="manage_products.html">Manage Products</a>
                         <a class="block py-2 px-4 rounded-lg hover:bg-teal-100 mb-2" href="view_subscriptions.html">View Subscriptions</a>
                         <a class="block py-2 px-4 rounded-lg hover:bg-teal-100 mb-2" href="order_history.html">Order History</a>
                         <a class="block py-2 px-4 rounded-lg hover:bg-teal-100" href="delivery_list.html">Daily Delivery List</a>
@@ -135,7 +207,11 @@
        const hamburgerMenu = document.getElementById('hamburger-menu');
        const menuOverlay = document.getElementById('menu-overlay');
        const menuClose = document.getElementById('menu-close');
-
+       const logoutButton = document.getElementById('logout-button');
+        
+        logoutButton.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
        hamburgerMenu.addEventListener('click', () => {
            menuOverlay.classList.add('open');
        });
@@ -149,8 +225,33 @@
                menuOverlay.classList.remove('open');
            }
        });
-       
-       
+   </script>
+   <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const themeIcon = document.getElementById('theme-icon');
+    const themePath = document.getElementById('theme-path');
+
+    // Load saved theme from local storage or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        body.classList.add('dark-mode');
+        themePath.setAttribute('d', 'M12 3v9l4 4');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+            themePath.setAttribute('d', 'M12 3v9l4 4');
+        } else {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+            themePath.setAttribute('d', 'M12 3v9l4 4');
+        }
+    });
+});
    </script>
 </body>
 
