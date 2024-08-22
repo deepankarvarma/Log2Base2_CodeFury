@@ -194,6 +194,37 @@ nav a:hover {
     color: white;
     z-index: 1000; /* Ensure it appears above other elements */
 }
+/* Define keyframes for typing animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Define keyframes for blinking cursor */
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Style for the element with typing animation */
+.typing-animation {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.15em solid transparent; /* Set the initial color to transparent */
+    transition: border-color 0.5s ease; /* Smooth transition for the border color */
+}
+
+/* Apply the typing animation on hover */
+.typing-animation:hover {
+    border-right: 0.15em solid teal; /* Set the border color on hover */
+    animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+}
 
 
     </style>
@@ -204,30 +235,31 @@ nav a:hover {
         <div class="loader"></div>
     </div>
     <!-- Header -->
-    <header class="bg-white shadow-sm fade-slide-in">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" alt="Logo" class="w-12 h-12 mr-4">
-                <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
-            </div>
-            <nav class="bg-white flex items-center">
-                <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-                <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
-                    <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 3v9l4 4"></path>
-                    </svg>
-                </button>
-            </nav>
+  <header class="bg-white shadow-sm fade-slide-in">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" alt="Logo" class="w-12 h-12 mr-4">
+            <h1 class="text-3xl font-bold text-teal-600 typing-animation">Freshly Delivered</h1>
         </div>
-    </header>
+        <nav class="bg-white flex items-center">
+            <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
+                <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 3v9l4 4"></path>
+                </svg>
+            </button>
+        </nav>
+    </div>
+</header>
+
     
     <!-- Main Content -->
     <main class="container mx-auto mt-12 px-6 flex-grow fade-slide-in">
