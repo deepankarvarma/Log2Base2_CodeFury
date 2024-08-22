@@ -20,6 +20,9 @@ nav a:hover {
     color: #38b2ac; /* Tailwind's teal-500 */
     font-weight: 600; /* Semi-bold font weight */
 } 
+body.dark-mode #theme-icon {
+    transform: rotate(180deg);
+}
         .menu-overlay {
          position: fixed;
          top: 0;
@@ -166,6 +169,7 @@ body.dark-mode .text-teal-600 {
                     </svg>
                 </button>
                 <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
+                    
                     <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -276,33 +280,33 @@ body.dark-mode .text-teal-600 {
         });
         
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-      const themeToggle = document.getElementById('theme-toggle');
-      const body = document.body;
-      const themeIcon = document.getElementById('theme-icon');
-      const themePath = document.getElementById('theme-path');
-  
-      // Load saved theme from local storage or default to light mode
-      const currentTheme = localStorage.getItem('theme') || 'light';
-      if (currentTheme === 'dark') {
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+  const themeIcon = document.getElementById('theme-icon');
+  const themePath = document.getElementById('theme-path');
+
+  // Load saved theme from local storage or default to light mode
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  if (currentTheme === 'dark') {
+      body.classList.add('dark-mode');
+      themePath.setAttribute('d', 'M12 3v9l4 4');
+  }
+
+  themeToggle.addEventListener('click', () => {
+      if (body.classList.contains('dark-mode')) {
+          body.classList.remove('dark-mode');
+          localStorage.setItem('theme', 'light');
+          themePath.setAttribute('d', 'M12 3v9l4 4');
+      } else {
           body.classList.add('dark-mode');
+          localStorage.setItem('theme', 'dark');
           themePath.setAttribute('d', 'M12 3v9l4 4');
       }
-  
-      themeToggle.addEventListener('click', () => {
-          if (body.classList.contains('dark-mode')) {
-              body.classList.remove('dark-mode');
-              localStorage.setItem('theme', 'light');
-              themePath.setAttribute('d', 'M12 3v9l4 4');
-          } else {
-              body.classList.add('dark-mode');
-              localStorage.setItem('theme', 'dark');
-              themePath.setAttribute('d', 'M12 3v9l4 4');
-          }
-      });
   });
-     </script>
+});
+ </script>
 </body>
 
 </html>

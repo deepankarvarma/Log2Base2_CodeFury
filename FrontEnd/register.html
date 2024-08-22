@@ -14,7 +14,9 @@
     font-weight: normal; /* Default font weight */
     transition: color 0.3s ease, font-weight 0.3s ease;
 }
-
+body.dark-mode #theme-icon {
+    transform: rotate(180deg);
+}
 nav a:hover {
     color: #38b2ac; /* Tailwind's teal-500 */
     font-weight: 600; /* Semi-bold font weight */
@@ -191,16 +193,28 @@ body.dark-mode .text-teal-600 {
                     <input type="email" id="email" name="email" required
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
                 </div>
-                <div>
+                <div class="relative">
                     <label for="password" class="block text-sm font-medium text-gray-600">Password:</label>
-                    <input type="password" id="password" name="password" required
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
+                    <div class="relative">
+                        <input type="password" id="password" name="password" required
+                            class="mt-1 block w-full px-3 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
+                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-600 hover:text-gray-600">
+                            <i class="fas fa-eye"></i> <!-- Font Awesome icon -->
+                        </button>
+                    </div>
                 </div>
-                <div>
+                
+                <div class="relative">
                     <label for="confirmPassword" class="block text-sm font-medium text-gray-600">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
+                    <div class="relative">
+                        <input type="password" id="confirmPassword" name="confirmPassword" required
+                            class="mt-1 block w-full px-3 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
+                        <button type="button" id="toggleConfirmPassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
+                
                 <p id="error-message" class="text-red-600 text-sm"></p>
                 <div>
                     <button type="submit" onclick="register()"
@@ -231,8 +245,27 @@ body.dark-mode .text-teal-600 {
             </nav>
         </div>
     </div>
+    
     <script>
-     
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const confirmPasswordField = document.getElementById('confirmPassword');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+
+        toggleConfirmPassword.addEventListener('click', function () {
+            const type = confirmPasswordField.type === 'password' ? 'text' : 'password';
+            confirmPasswordField.type = type;
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+
         const hamburgerMenu = document.getElementById('hamburger-menu');
         const menuOverlay = document.getElementById('menu-overlay');
         const menuClose = document.getElementById('menu-close');
@@ -250,9 +283,6 @@ body.dark-mode .text-teal-600 {
                 menuOverlay.classList.remove('open');
             }
         });
-        
-     
-        
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
