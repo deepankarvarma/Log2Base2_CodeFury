@@ -21,6 +21,15 @@ nav a:hover {
     color: #38b2ac; /* Tailwind's teal-500 */
     font-weight: 600; /* Semi-bold font weight */
 } 
+footer {
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+        }
          .menu-overlay {
          position: fixed;
          top: 0;
@@ -125,7 +134,7 @@ body.dark-mode .text-teal-600 {
 
 
 /* Add styles for the toggle button */
-#theme-toggle {
+#theme-toggle,.sort-icon {
     cursor: pointer;
 }
 
@@ -142,6 +151,13 @@ body.dark-mode .text-teal-600 {
             
             <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
             <nav class="bg-white flex items-center">
+                <!-- Logout Button with Logo -->
+                <button id="logout-button" class="flex items-center text-teal-600 bg-teal-100 px-4 py-2 rounded-lg hover:bg-teal-200">
+                    <i class="fas fa-sign-out-alt mr-2"></i>
+                    Logout
+                </button>
+                &nbsp; &nbsp;
+                
                 <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -164,7 +180,7 @@ body.dark-mode .text-teal-600 {
     <div class="container mx-auto my-12 px-4">
         <div class="flex flex-wrap">
             <main class="w-full">
-                <h2 class="text-2xl font-semibold mb-6 text-teal-700">Order History</h2>
+                <h2 class="text-2xl font-semibold mb-6 text-teal-600">Order History</h2>
                 <div class="overflow-x-auto bg-white shadow-lg rounded-lg p-6 table-container">
                     <table class="min-w-full text-left table-auto">
                         <thead>

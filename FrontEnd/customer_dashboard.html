@@ -177,8 +177,8 @@ body.dark-mode .text-teal-600 {
                 <!-- Main Content Section -->
                 <main class="w-full md:w-3/4 px-4">
                     <div class="bg-white shadow-lg rounded-lg p-6">
-                        <h2 class="text-2xl font-semibold mb-6 text-teal-700">Welcome, [Customer Name]!</h2>
-                        <p class="text-gray-700">Browse products, manage your subscriptions, and track your orders.</p>
+                        <h2 class="text-2xl font-semibold mb-6 text-teal-600">Welcome, [Customer Name]!</h2>
+                        <p class="text-gray-600">Browse products, manage your subscriptions, and track your orders.</p>
                     </div>
                 </main>
             </div>
@@ -228,32 +228,32 @@ body.dark-mode .text-teal-600 {
       
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-      const themeToggle = document.getElementById('theme-toggle');
-      const body = document.body;
-      const themeIcon = document.getElementById('theme-icon');
-      const themePath = document.getElementById('theme-path');
-  
-      // Load saved theme from local storage or default to light mode
-      const currentTheme = localStorage.getItem('theme') || 'light';
-      if (currentTheme === 'dark') {
-          body.classList.add('dark-mode');
-          themePath.setAttribute('d', 'M12 3v9l4 4');
-      }
-  
-      themeToggle.addEventListener('click', () => {
-          if (body.classList.contains('dark-mode')) {
-              body.classList.remove('dark-mode');
-              localStorage.setItem('theme', 'light');
-              themePath.setAttribute('d', 'M12 3v9l4 4');
-          } else {
-              body.classList.add('dark-mode');
-              localStorage.setItem('theme', 'dark');
-              themePath.setAttribute('d', 'M12 3v9l4 4');
-          }
-      });
-  });
-     </script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const themeIcon = document.getElementById('theme-icon');
+    const themePath = document.getElementById('theme-path');
+
+    // Load saved theme from local storage or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        body.classList.add('dark-mode');
+        themePath.setAttribute('d', 'M12 3v9l4 4');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+            themePath.setAttribute('d', 'M12 3v9l4 4');
+        } else {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+            themePath.setAttribute('d', 'M12 3v9l4 4');
+        }
+    });
+});
+   </script>
 </body>
 
 </html>
