@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Check if the user is authenticated
         const isAuthenticated = localStorage.getItem('isAuthenticated');
@@ -8,7 +8,7 @@
             window.location.href = 'login.html';
         }
     });
-</script>
+</script> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -227,19 +227,36 @@ body.dark-mode .text-teal-600 {
             <main class="w-full md:w-3/4 px-4">
                 <h2 class="text-2xl font-semibold mb-6 text-teal-600">Active Subscriptions</h2>
                 <div class="flex flex-wrap gap-6">
+                    <!-- Subscription 1 -->
                     <div class="subscription bg-white shadow-lg rounded-lg p-6">
+                        <div class="mb-4">
+                            <img src="./img/apples.jpg" alt="Organic Apples" class="w-full h-48 object-cover rounded-lg mb-4">
+                        </div>
                         <h3 class="text-xl font-semibold mb-2 text-teal-600">Organic Apples</h3>
-                        <p class="text-gray-600 mb-4">Next delivery: Aug 18, 2024</p>
-                        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-600">Cancel Subscription</button>
+                        <p class="text-gray-600 mb-4">Weekly Subscription</p>
+                        <p class="text-gray-600 mb-4">Delivering every Monday - ₹299 per delivery</p>
+                        <p class="text-gray-600 mb-4">
+                            Next delivery: <span class="text-green-500">Aug 28, 2024</span>
+                        </p>
+                        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Cancel Subscription</button>
                     </div>
+            
+                    <!-- Subscription 2 -->
                     <div class="subscription bg-white shadow-lg rounded-lg p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-teal-600">Mixed Vegetables</h3>
-                        <p class="text-gray-600 mb-4">Next delivery: Aug 20, 2024</p>
-                        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-600">Cancel Subscription</button>
+                        <div class="mb-4">
+                            <img src="./img/tomatoes.png" alt="Fresh Tomatoes" class="w-full h-48 object-cover rounded-lg mb-4">
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-teal-600">Fresh Tomatoes</h3>
+                        <p class="text-gray-600 mb-4">Monthly Subscription</p>
+                        <p class="text-gray-600 mb-4">Delivering on the first of every month - ₹1299 per delivery</p>
+                        <p class="text-gray-600 mb-4">
+                            Next delivery: <span class="text-green-500">Aug 29, 2024</span>
+                        </p>
+                        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Cancel Subscription</button>
                     </div>
-                    <!-- Add more subscriptions as needed -->
                 </div>
             </main>
+            
         </div>
     </div>
 
