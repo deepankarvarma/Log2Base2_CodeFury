@@ -1,3 +1,15 @@
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check if the user is authenticated
+        const isAuthenticated = localStorage.getItem('isAuthenticated');
+
+        // If the user is not authenticated, redirect to the login page
+        if (!isAuthenticated) {
+            window.location.href = 'login.html';
+        }
+    });
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -252,11 +264,12 @@ body.dark-mode .text-teal-600 {
                 menuOverlay.classList.remove('open');
             }
         });
-        const logoutButton = document.getElementById('logout-button');
-        
-        logoutButton.addEventListener('click', () => {
-            window.location.href = 'index.html';
-        });
+        document.getElementById('logout-button').addEventListener('click', () => {
+        // Remove the authentication flag from local storage
+        localStorage.removeItem('isAuthenticated');
+        // Redirect to the login page
+        window.location.href = 'login.html';
+    });
        
     </script>
     <script>

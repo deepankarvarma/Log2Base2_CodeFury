@@ -298,8 +298,10 @@ nav a:hover {
                 return;
             } else {
                 if (accessMap.get(email)[1] === "admin") {
+                    localStorage.setItem('isAuthenticated', 'true');
                     window.location.href = "admin_dashboard.html";
                 } else {
+                    localStorage.setItem('isAuthenticated', 'true');
                     window.location.href = "customer_dashboard.html";
                 }
             }
