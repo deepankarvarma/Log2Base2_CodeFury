@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
     <style>
         /* General Styles */
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -13,29 +15,30 @@
             background-color: #f4f4f4;
             color: #333;
         }
-
+        
         header {
-            background-color: #008080; /* Teal Green */
+            background-color: #008080;
+            /* Teal Green */
             color: white;
             padding: 20px;
             text-align: center;
         }
-
+        
         header nav {
             margin-top: 10px;
         }
-
+        
         header nav a {
             color: white;
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
         }
-
+        
         header nav a:hover {
             text-decoration: underline;
         }
-
+        
         .content {
             padding: 20px;
             margin: 20px auto;
@@ -43,52 +46,56 @@
             background-color: white;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-
         /* Contact Us Section */
+        
         .contact-section h2 {
-            color: #008080; /* Teal Green */
+            color: #008080;
+            /* Teal Green */
             margin-top: 0;
         }
-
+        
         .contact-section form {
             display: flex;
             flex-direction: column;
         }
-
+        
         .contact-section label {
             margin-top: 10px;
             font-weight: bold;
         }
-
-        .contact-section input, .contact-section textarea {
+        
+        .contact-section input,
+        .contact-section textarea {
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-
+        
         .contact-section textarea {
             resize: vertical;
             min-height: 100px;
         }
-
+        
         .contact-section button {
             margin-top: 15px;
             padding: 10px;
-            background-color: #008080; /* Teal Green */
+            background-color: #008080;
+            /* Teal Green */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
         }
-
+        
         .contact-section button:hover {
             background-color: #006666;
         }
-
+        
         footer {
-            background-color: #008080; /* Teal Green */
+            background-color: #008080;
+            /* Teal Green */
             color: white;
             text-align: center;
             padding: 10px;
@@ -98,14 +105,44 @@
         }
     </style>
 </head>
+
 <body>
-    <header>
-        <h1>Contact Us</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about_us.html">About Us</a>
-            <a href="contact_us.html">Contact Us</a>
-        </nav>
+    <header class="bg-white shadow-sm fade-slide-in">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+
+            <div class="flex items-center">
+                <img src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" alt="Logo" class="w-12 h-12 mr-4">
+                <h1 class="text-3xl font-bold text-teal-600 ">Freshly Delivered</h1>
+            </div>
+            <nav class="bg-white flex items-center">
+
+                <!-- Profile Icon from Font Awesome -->
+                <a href="profile.html" class="ml-4 text-teal-600 focus:outline-none">
+                    <i class="fas fa-user-circle fa-2x mr-4"></i>
+                </a>
+                <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+
+                <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
+                    <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v9l4 4"></path>
+                    </svg>
+                </button>
+                <!-- Logout Button with Logo -->
+                <button id="logout-button" class="flex items-center text-teal-600 px-4 py-2 ">
+                    <i class="fas fa-sign-out-alt "></i>
+                    
+                </button>
+            </nav>
+
+        </div>
     </header>
 
     <div class="content">
@@ -132,4 +169,5 @@
         <p>&copy; 2024 Freshly Delivered. All rights reserved.</p>
     </footer>
 </body>
+
 </html>

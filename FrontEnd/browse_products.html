@@ -172,12 +172,11 @@
                 <h1 class="text-3xl font-bold text-teal-600 ">Freshly Delivered</h1>
             </div>
             <nav class="bg-white flex items-center">
-                <!-- Logout Button with Logo -->
-                <button id="logout-button" class="flex items-center text-teal-600 bg-teal-100 px-4 py-2 rounded-lg hover:bg-teal-200">
-                    <i class="fas fa-sign-out-alt mr-2"></i>
-                    Logout
-                </button> &nbsp; &nbsp;
 
+                <!-- Profile Icon from Font Awesome -->
+                <a href="profile.html" class="ml-4 text-teal-600 focus:outline-none">
+                    <i class="fas fa-user-circle fa-2x mr-4"></i>
+                </a>
                 <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -185,12 +184,18 @@
                             d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
+
                 <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
                     <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 3v9l4 4"></path>
                     </svg>
+                </button>
+                <!-- Logout Button with Logo -->
+                <button id="logout-button" class="flex items-center text-teal-600 px-4 py-2 ">
+                    <i class="fas fa-sign-out-alt "></i>
+                    
                 </button>
             </nav>
 

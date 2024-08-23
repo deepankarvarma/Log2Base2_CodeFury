@@ -16,33 +16,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-    rel="icon"
-    href=
-"./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png"
-    type="image"
-/>
+    <link rel="icon" href="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" type="image" />
     <title>Order History</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-               nav a {
-    position: relative;
-    text-decoration: none;
-    font-weight: normal; /* Default font weight */
-    transition: color 0.3s ease, font-weight 0.3s ease;
-}
-
-nav a:hover {
-    color: #38b2ac; /* Tailwind's teal-500 */
-    font-weight: 600; /* Semi-bold font weight */
-} 
-body.dark-mode #theme-icon {
-    transform: rotate(180deg);
-}
-footer {
+        nav a {
+            position: relative;
+            text-decoration: none;
+            font-weight: normal;
+            /* Default font weight */
+            transition: color 0.3s ease, font-weight 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #38b2ac;
+            /* Tailwind's teal-500 */
+            font-weight: 600;
+            /* Semi-bold font weight */
+        }
+        
+        body.dark-mode #theme-icon {
+            transform: rotate(180deg);
+        }
+        
+        footer {
             background-color: #1a202c;
             color: white;
             position: fixed;
@@ -51,117 +51,116 @@ footer {
             text-align: center;
             padding: 10px 0;
         }
-         .menu-overlay {
-         position: fixed;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         background: rgba(0, 0, 0, 0.9);
-         z-index: 999;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         opacity: 0;
-         pointer-events: none;
-         transition: opacity 0.5s ease;
-     }
-     
-     .menu-overlay.open {
-         opacity: 1;
-         pointer-events: auto;
-     }
-     
-     .menu-content {
-         color: white;
-         padding: 2rem;
-         text-align: center;
-         border-radius: 0.5rem;
-         width: 80%;
-         max-width: 400px;
-         transform: translateY(-20px);
-         transition: transform 0.5s ease, opacity 0.5s ease;
-         opacity: 0;
-     }
-     
-     .menu-overlay.open .menu-content {
-         transform: translateY(0);
-         opacity: 1;
-     }
-     
-     .menu-close {
-         cursor: pointer;
-         top: 1rem;
-         right: 1rem;
-         font-size: 2rem;
-         color: white;
-         z-index: 1000; /* Ensure it appears above other elements */
-     }
-     body {
-
-background-color: #f9fafb;
-
-color: #333;
-
-transition: background-color 0.3s ease, color 0.3s ease;    
-
-}
+        
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .menu-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .menu-content {
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            width: 80%;
+            max-width: 400px;
+            transform: translateY(-20px);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+        
+        .menu-overlay.open .menu-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .menu-close {
+            cursor: pointer;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: white;
+            z-index: 1000;
+            /* Ensure it appears above other elements */
+        }
+        
+        body {
+            background-color: #f9fafb;
+            color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
         .bg-gray-800 {
-    background-color: #2d3748;
-}
-
-.bg-gray-900 {
-    background-color: #1a202c;
-}
-
-.text-gray-100 {
-    color: #f7fafc;
-}
-
-.text-gray-300 {
-    color: #e2e8f0;
-}
-
-.text-gray-400 {
-    color: #cbd5e0;
-}
-
-.bg-teal-500 {
-    background-color: #38b2ac;
-}
-
-.bg-teal-600 {
-    background-color: #319795;
-}
-
-/* Dark mode styles */
-body.dark-mode {
-    background-color: #1a202c;
-    color: #e2e8f0;
-}
-
-body.dark-mode .bg-white {
-    background-color: #2d3748;
-}
-
-body.dark-mode .text-gray-600 {
-    color: #e2e8f0;
-}
-
-body.dark-mode .text-teal-600 {
-    color: #81e6d9;
-}
-
-
-
-/* Add styles for the toggle button */
-#theme-toggle,.sort-icon {
-    cursor: pointer;
-}
-
-#theme-icon {
-    transition: transform 0.3s ease;
-}
+            background-color: #2d3748;
+        }
+        
+        .bg-gray-900 {
+            background-color: #1a202c;
+        }
+        
+        .text-gray-100 {
+            color: #f7fafc;
+        }
+        
+        .text-gray-300 {
+            color: #e2e8f0;
+        }
+        
+        .text-gray-400 {
+            color: #cbd5e0;
+        }
+        
+        .bg-teal-500 {
+            background-color: #38b2ac;
+        }
+        
+        .bg-teal-600 {
+            background-color: #319795;
+        }
+        /* Dark mode styles */
+        
+        body.dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .bg-white {
+            background-color: #2d3748;
+        }
+        
+        body.dark-mode .text-gray-600 {
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .text-teal-600 {
+            color: #81e6d9;
+        }
+        /* Add styles for the toggle button */
+        
+        #theme-toggle,
+        .sort-icon {
+            cursor: pointer;
+        }
+        
+        #theme-icon {
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 
@@ -169,19 +168,17 @@ body.dark-mode .text-teal-600 {
     <!-- Header -->
     <header class="bg-white shadow-sm fade-slide-in">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            
+
             <div class="flex items-center">
                 <img src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" alt="Logo" class="w-12 h-12 mr-4">
                 <h1 class="text-3xl font-bold text-teal-600 ">Freshly Delivered</h1>
             </div>
             <nav class="bg-white flex items-center">
-                <!-- Logout Button with Logo -->
-                <button id="logout-button" class="flex items-center text-teal-600 bg-teal-100 px-4 py-2 rounded-lg hover:bg-teal-200">
-                    <i class="fas fa-sign-out-alt mr-2"></i>
-                    Logout
-                </button>
-                &nbsp; &nbsp;
-                
+
+                <!-- Profile Icon from Font Awesome -->
+                <a href="profile.html" class="ml-4 text-teal-600 focus:outline-none">
+                    <i class="fas fa-user-circle fa-2x mr-4"></i>
+                </a>
                 <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -189,6 +186,7 @@ body.dark-mode .text-teal-600 {
                             d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
+
                 <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
                     <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -196,11 +194,16 @@ body.dark-mode .text-teal-600 {
                             d="M12 3v9l4 4"></path>
                     </svg>
                 </button>
+                <!-- Logout Button with Logo -->
+                <button id="logout-button" class="flex items-center text-teal-600 px-4 py-2 ">
+                    <i class="fas fa-sign-out-alt "></i>
+                    
+                </button>
             </nav>
-            
+
         </div>
     </header>
-    
+
     <div class="container mx-auto my-12 px-4">
         <div class="flex flex-wrap">
             <main class="w-full">
@@ -282,11 +285,11 @@ body.dark-mode .text-teal-600 {
             }
         });
         document.getElementById('logout-button').addEventListener('click', () => {
-        // Remove the authentication flag from local storage
-        localStorage.removeItem('isAuthenticated');
-        // Redirect to the login page
-        window.location.href = 'login.html';
-    });
+            // Remove the authentication flag from local storage
+            localStorage.removeItem('isAuthenticated');
+            // Redirect to the login page
+            window.location.href = 'login.html';
+        });
         let sortOrder = 1; // 1 for ascending, -1 for descending
 
         function sortTable(columnIndex) {
@@ -310,36 +313,34 @@ body.dark-mode .text-teal-600 {
 
             rows.forEach(row => table.appendChild(row));
         }
-
-        
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-      const themeToggle = document.getElementById('theme-toggle');
-      const body = document.body;
-      const themeIcon = document.getElementById('theme-icon');
-      const themePath = document.getElementById('theme-path');
-  
-      // Load saved theme from local storage or default to light mode
-      const currentTheme = localStorage.getItem('theme') || 'light';
-      if (currentTheme === 'dark') {
-          body.classList.add('dark-mode');
-          themePath.setAttribute('d', 'M12 3v9l4 4');
-      }
-  
-      themeToggle.addEventListener('click', () => {
-          if (body.classList.contains('dark-mode')) {
-              body.classList.remove('dark-mode');
-              localStorage.setItem('theme', 'light');
-              themePath.setAttribute('d', 'M12 3v9l4 4');
-          } else {
-              body.classList.add('dark-mode');
-              localStorage.setItem('theme', 'dark');
-              themePath.setAttribute('d', 'M12 3v9l4 4');
-          }
-      });
-  });
-     </script>
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themePath = document.getElementById('theme-path');
+
+            // Load saved theme from local storage or default to light mode
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            if (currentTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themePath.setAttribute('d', 'M12 3v9l4 4');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    themePath.setAttribute('d', 'M12 3v9l4 4');
+                } else {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    themePath.setAttribute('d', 'M12 3v9l4 4');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
