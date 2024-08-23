@@ -172,11 +172,12 @@
                 <h1 class="text-3xl font-bold text-teal-600 ">Freshly Delivered</h1>
             </div>
             <nav class="bg-white flex items-center">
+                <!-- Logout Button with Logo -->
+                <button id="logout-button" class="flex items-center text-teal-600 bg-teal-100 px-4 py-2 rounded-lg hover:bg-teal-200">
+                    <i class="fas fa-sign-out-alt mr-2"></i>
+                    Logout
+                </button> &nbsp; &nbsp;
 
-                <!-- Profile Icon from Font Awesome -->
-                <a href="profile.html" class="ml-4 text-teal-600 focus:outline-none">
-                    <i class="fas fa-user-circle fa-2x mr-4"></i>
-                </a>
                 <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -184,7 +185,6 @@
                             d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
-
                 <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
                     <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -192,92 +192,105 @@
                             d="M12 3v9l4 4"></path>
                     </svg>
                 </button>
-                <!-- Logout Button with Logo -->
-                <button id="logout-button" class="flex items-center text-teal-600 px-4 py-2 ">
-                    <i class="fas fa-sign-out-alt "></i>
-                    
-                </button>
             </nav>
 
         </div>
     </header>
 
-    <div class="container mx-auto my-12 px-4 py-6">
+    <div class="container mx-auto my-12 px-4">
         <div class="flex flex-wrap -mx-4">
 
 
             <!-- Main Content Section -->
-            <main class="w-full md:w px-4 ">
+            <main class="w-full md:w px-4">
                 <h2 class="text-2xl font-semibold mb-6 text-teal-600">Browse Products</h2>
-                <div class="mb-6">
-                    <div class="relative">
-                        <input type="text" id="search-input" placeholder="Search products..." class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
-                        <button id="search-button" class="absolute inset-y-0 right-0 px-4 py-2 bg-teal-500 text-white rounded-r-lg hover:bg-teal-600 focus:outline-none">
-                            Search
-                        </button>
-                    </div>
+
+                <div class="flex space-x-4 mb-6">
+                    <input type="text" id="search-input"
+                        class="w-full px-4 py-2 border border-black-300 rounded-lg text-black"
+                        placeholder="Search Products...">
+
+                    <select id="category-filter" class="px-4 py-2 border border-black-300 rounded-lg text-black">
+                        <option value="all">All</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="vegetables">Vegetables</option>
+                        <option value="others">Others</option>
+                    </select>
                 </div>
 
                 <div class="flex flex-wrap gap-6">
                     <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="product-item bg-white p-4 rounded-lg shadow-lg">
-                            <img src="./img/apples.jpg" alt="Organic Apples" class="h-40 w-full object-cover rounded-t-lg">
+                        
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg" data-category="fruits">
+                            <img src="./img/apples.jpg" alt="Organic Apples"
+                                class="h-40 w-full object-cover rounded-t-lg">
                             <h3 class="text-xl font-semibold mt-4">Organic Apples</h3>
                             <p class="mt-2">₹80 per 1kg - Subscribe for weekly deliveries</p>
                             <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
                         </div>
-                        <div class="product-item bg-white p-4 rounded-lg shadow-lg">
-                            <img src="./img/carrots.png" alt="Fresh Carrots" class="h-40 w-full object-cover rounded-t-lg">
+
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg" data-category="vegetables">
+                            <img src="./img/carrots.png" alt="Fresh Carrots"
+                                class="h-40 w-full object-cover rounded-t-lg">
                             <h3 class="text-xl font-semibold mt-4">Fresh Carrots</h3>
                             <p class="mt-2">₹100 per 1kg - Subscribe for bi-weekly deliveries</p>
                             <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
                         </div>
-                        <div class="product-item bg-white p-4 rounded-lg shadow-lg">
-                            <img src="./img/snacks.png" alt="Healthy Snacks" class="h-40 w-full object-cover rounded-t-lg">
+
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg" data-category="others">
+                            <img src="./img/snacks.png" alt="Healthy Snacks"
+                                class="h-40 w-full object-cover rounded-t-lg">
                             <h3 class="text-xl font-semibold mt-4">Healthy Snacks</h3>
                             <p class="mt-2">₹50 per pack - Subscribe for monthly deliveries</p>
                             <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow-lg">
-                            <img src="./img/bananas.jpg" alt="Organic Bananas" class="h-40 w-full object-cover rounded-t-lg">
+
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg" data-category="fruits">
+                            <img src="./img/bananas.jpg" alt="Organic Bananas"
+                                class="h-40 w-full object-cover rounded-t-lg">
                             <h3 class="text-xl font-semibold mt-4">Organic Bananas</h3>
                             <p class="mt-2">₹60 per dozen - Subscribe for weekly deliveries</p>
                             <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow-lg">
+
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg" data-category="vegetables">
                             <img src="./img/tomatoes.png" alt="Fresh Tomatoes" class="h-40 w-full object-cover rounded-t-lg">
                             <h3 class="text-xl font-semibold mt-4">Fresh Tomatoes</h3>
                             <p class="mt-2">₹70 per kg - Subscribe for bi-weekly deliveries</p>
                             <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow-lg">
+
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg" data-category="others">
                             <img src="./img/bread.jpg" alt="Whole Wheat Bread" class="h-40 w-full object-cover rounded-t-lg">
                             <h3 class="text-xl font-semibold mt-4">Whole Wheat Bread</h3>
                             <p class="mt-2">₹40 per loaf - Subscribe for daily deliveries</p>
                             <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow-lg">
+
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg" data-category="others">
                             <img src="./img/milk.png" alt="Organic Milk" class="h-40 w-full object-cover rounded-t-lg">
                             <h3 class="text-xl font-semibold mt-4">Organic Milk</h3>
                             <p class="mt-2">₹50 per liter - Subscribe for daily deliveries</p>
                             <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow-lg">
+
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg" data-category="others">
                             <img src="./img/eggs.png" alt="Free-Range Eggs" class="h-40 w-full object-cover rounded-t-lg">
                             <h3 class="text-xl font-semibold mt-4">Free-Range Eggs</h3>
                             <p class="mt-2">₹90 per dozen - Subscribe for weekly deliveries</p>
                             <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow-lg"> <img src="./img/yogurt.png" alt="Greek Yogurt" class="h-40 w-full object-cover rounded-t-lg">
+
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg" data-category="others">
+                            <img src="./img/yogurt.png" alt="Greek Yogurt" class="h-40 w-full object-cover rounded-t-lg">
                             <h3 class="text-xl font-semibold mt-4">Greek Yogurt</h3>
                             <p class="mt-2">₹120 per pack - Subscribe for bi-weekly deliveries</p>
-                            <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button></div>
-
+                            <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
+                        </div>
                     </div>
                 </div>
+            </main>
         </div>
-        </main>
-    </div>
     </div>
 
     <footer>
@@ -297,6 +310,7 @@
     </div>
 
     <script>
+        // Theme Toggle
         const hamburgerMenu = document.getElementById('hamburger-menu');
         const menuOverlay = document.getElementById('menu-overlay');
         const menuClose = document.getElementById('menu-close');
@@ -314,14 +328,36 @@
                 menuOverlay.classList.remove('open');
             }
         });
+        
         document.getElementById('logout-button').addEventListener('click', () => {
             // Remove the authentication flag from local storage
             localStorage.removeItem('isAuthenticated');
             // Redirect to the login page
             window.location.href = 'login.html';
         });
-    </script>
-    <script>
+
+        // Search and Filter Products
+        document.getElementById('search-input').addEventListener('input', filterProducts);
+        document.getElementById('category-filter').addEventListener('change', filterProducts);
+        function filterProducts() {
+            const searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+            const selectedCategory = document.getElementById('category-filter').value;
+            const products = document.querySelectorAll('.product-item');
+
+            products.forEach(product => {
+                const productName = product.querySelector('h3').innerText.toLowerCase();
+                const productCategory = product.getAttribute('data-category');
+
+                const matchesSearch = productName.includes(searchQuery);
+                const matchesCategory = selectedCategory === 'all' || selectedCategory === productCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        };
         document.addEventListener('DOMContentLoaded', () => {
             const themeToggle = document.getElementById('theme-toggle');
             const body = document.body;
@@ -347,6 +383,8 @@
                 }
             });
         });
+        
+        
     </script>
 </body>
 
