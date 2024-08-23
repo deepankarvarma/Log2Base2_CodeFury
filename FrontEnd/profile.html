@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #008080; /* Teal Green */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header nav {
+            margin-top: 10px;
+        }
+
+        header nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-section {
+            margin-bottom: 20px;
+        }
+
+        .profile-section h2 {
+            color: #008080; /* Teal Green */
+            margin-top: 0;
+        }
+
+        .profile-section .field-label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .profile-section .field-value {
+            margin-left: 10px;
+            display: inline-block;
+        }
+
+        .profile-section .editable-field {
+            display: none;
+            margin-left: 10px;
+            padding: 5px;
+        }
+
+        .profile-section button {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #008080; /* Teal Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .profile-section button:hover {
+            background-color: #006666;
+        }
+
+        .delete-account {
+            color: #ff4d4d;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .delete-account:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #008080; /* Teal Green */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Profile</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="about_us.html">About Us</a>
+            <a href="contact_us.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <div class="content">
+        <section class="profile-section">
+            <h2>Your Details</h2>
+            <form id="updateProfileForm">
+                <div>
+                    <span class="field-label">Username:</span>
+                    <span class="field-value" id="usernameText">JohnDoe</span>
+                    <input type="text" id="usernameInput" name="username" value="JohnDoe" class="editable-field">
+                </div>
+
+                <div>
+                    <span class="field-label">Email:</span>
+                    <span class="field-value" id="emailText">johndoe@example.com</span>
+                    <input type="email" id="emailInput" name="email" value="johndoe@example.com" class="editable-field" readonly>
+                </div>
+
+                <div>
+                    <span class="field-label">Phone Number:</span>
+                    <span class="field-value" id="phoneText">123-456-7890</span>
+                    <input type="text" id="phoneInput" name="phone" value="123-456-7890" class="editable-field">
+                </div>
+
+                <div>
+                    <span class="field-label">Address:</span>
+                    <span class="field-value" id="addressText">123 Fresh Lane, Food City, FL 12345</span>
+                    <textarea id="addressInput" name="address" class="editable-field">123 Fresh Lane, Food City, FL 12345</textarea>
+                </div>
+
+                <button type="button" id="editButton" onclick="toggleEdit()">Edit</button>
+            </form>
+        </section>
+
+        <section class="profile-section">
+            <h2>Change Password</h2>
+            <form id="changePasswordForm">
+                <label for="currentPassword">Current Password:</label>
+                <input type="password" id="currentPassword" name="currentPassword" required disabled><BR>
+
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" name="newPassword" required disabled><BR>
+
+                <label for="confirmPassword">Confirm New Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required disabled><BR>
+
+                <button type="button" id="changePasswordButton" onclick="togglePasswordChange()">Change Password</button><BR>
+            </form>
+        </section>
+
+        <section class="profile-section">
+            <h2>Past Subscriptions</h2>
+            <ul>
+                <li>Organic Fruit Box - Monthly - Delivered on 1st of every month</li>
+                <li>Ready-to-Eat Meals - Weekly - Delivered on every Monday</li>
+                <li>Vegetable Basket - Bi-Weekly - Delivered on 1st and 15th of every month</li>
+            </ul>
+        </section>
+
+        <div class="delete-account">
+            <a href="#" onclick="confirmDelete()">Delete Account</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Freshly Delivered. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleEdit() {
+            const isEditing = document.getElementById('editButton').textContent === 'Save';
+
+            document.querySelectorAll('.field-value').forEach(element => {
+                element.style.display = isEditing ? 'inline' : 'none';
+            });
+
+            document.querySelectorAll('.editable-field').forEach(element => {
+                element.style.display = isEditing ? 'none' : 'inline';
+            });
+
+            document.getElementById('editButton').textContent = isEditing ? 'Edit' : 'Save';
+        }
+
+        function togglePasswordChange() {
+            const isChanging = document.getElementById('changePasswordButton').textContent === 'Save Password';
+
+            document.getElementById('currentPassword').disabled = !isChanging;
+            document.getElementById('newPassword').disabled = !isChanging;
+            document.getElementById('confirmPassword').disabled = !isChanging;
+
+            document.getElementById('changePasswordButton').textContent = isChanging ? 'Change Password' : 'Save Password';
+        }
+
+        function confirmDelete() {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                // Perform account deletion logic
+                alert('Your account has been deleted.');
+            }
+        }
+    </script>
+</body>
+</html>
