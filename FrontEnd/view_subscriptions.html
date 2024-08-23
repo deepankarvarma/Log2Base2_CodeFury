@@ -18,12 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-    rel="icon"
-    href=
-    "./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png"
-    type="image"
-    />
+    <link rel="icon" href="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" type="image" />
     <title>View Subscriptions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -33,16 +28,22 @@
         nav a {
             position: relative;
             text-decoration: none;
-            font-weight: normal; /* Default font weight */
+            font-weight: normal;
+            /* Default font weight */
             transition: color 0.3s ease, font-weight 0.3s ease;
         }
+        
         body.dark-mode #theme-icon {
             transform: rotate(180deg);
         }
+        
         nav a:hover {
-            color: #38b2ac; /* Tailwind's teal-500 */
-            font-weight: 600; /* Semi-bold font weight */
-        } 
+            color: #38b2ac;
+            /* Tailwind's teal-500 */
+            font-weight: 600;
+            /* Semi-bold font weight */
+        }
+        
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -58,13 +59,16 @@
             pointer-events: none;
             transition: opacity 0.5s ease;
         }
+        
         .menu-overlay.open {
             opacity: 1;
             pointer-events: auto;
         }
+        
         .sort-icon {
             cursor: pointer;
         }
+        
         .menu-content {
             color: white;
             padding: 2rem;
@@ -76,65 +80,83 @@
             transition: transform 0.5s ease, opacity 0.5s ease;
             opacity: 0;
         }
+        
         .menu-overlay.open .menu-content {
             transform: translateY(0);
             opacity: 1;
         }
+        
         .menu-close {
             cursor: pointer;
             top: 1rem;
             right: 1rem;
             font-size: 2rem;
             color: white;
-            z-index: 1000; /* Ensure it appears above other elements */
+            z-index: 1000;
+            /* Ensure it appears above other elements */
         }
+        
         body {
             background-color: #f9fafb;
             color: #333;
-            transition: background-color 0.3s ease, color 0.3s ease;    
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+        
         .bg-gray-800 {
             background-color: #2d3748;
         }
+        
         .bg-gray-900 {
             background-color: #1a202c;
         }
+        
         .text-gray-100 {
             color: #f7fafc;
         }
+        
         .text-gray-300 {
             color: #e2e8f0;
         }
+        
         .text-gray-400 {
             color: #cbd5e0;
         }
+        
         .bg-teal-500 {
             background-color: #38b2ac;
         }
+        
         .bg-teal-600 {
             background-color: #319795;
         }
         /* Dark mode styles */
+        
         body.dark-mode {
             background-color: #1a202c;
             color: #e2e8f0;
         }
+        
         body.dark-mode .bg-white {
             background-color: #2d3748;
         }
+        
         body.dark-mode .text-gray-600 {
             color: #e2e8f0;
         }
+        
         body.dark-mode .text-teal-600 {
             color: #81e6d9;
         }
         /* Add styles for the toggle button */
+        
         #theme-toggle {
             cursor: pointer;
         }
+        
         #theme-icon {
             transition: transform 0.3s ease;
         }
+        
         footer {
             background-color: #1a202c;
             color: white;
@@ -144,9 +166,11 @@
             text-align: center;
             padding: 10px 0;
         }
+        
         body {
             background-color: #f5f7fa;
         }
+        
         footer {
             background-color: #1a202c;
             color: white;
@@ -172,8 +196,7 @@
                 <button id="logout-button" class="flex items-center text-teal-600 bg-teal-100 px-4 py-2 rounded-lg hover:bg-teal-200">
                     <i class="fas fa-sign-out-alt mr-2"></i>
                     Logout
-                </button>
-                &nbsp; &nbsp;
+                </button> &nbsp; &nbsp;
                 <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -192,22 +215,24 @@
         </div>
     </header>
 
-    <div class="container mx-auto my-12 px-4">
-        <div class="flex flex-wrap -mx-4">
-            <!-- Main Content Section -->
+    <div class="container mx-auto my-12 px-4 right-4">
+        <div class="flex flex-wrap">
             <main class="w-full">
                 <h2 class="text-2xl font-semibold mb-6 text-teal-600">All Subscriptions</h2>
 
-                <!-- Search Bar -->
-                <div class="mb-6">
-                    <input type="text" id="search-input" class="w-full px-4 py-2 border border-black-300 rounded-lg text-black" placeholder="Search by customer name or subscription ID...">
-                </div>
 
-                <div class="overflow-x-auto bg-white shadow-lg rounded-lg p-6">
+                <!-- Search Bar -->
+
+                <div class="mb-6">
+
+                    <input type="text" id="search-input" class="w-full px-4 py-2 border border-black-300 rounded-lg text-black" placeholder="Search by customer name or subscription ID...">
+
+                </div>
+                <div class="overflow-x-auto bg-white shadow-lg rounded-lg p-6 table-container">
                     <table class="min-w-full text-left table-auto">
                         <thead>
                             <tr class="bg-teal-100 text-teal-900">
-                                <th class="py-3 px-6 text-teal-900 font-semibold">Subscription ID 
+                                <th class="py-3 px-6 text-teal-900 font-semibold">Subscription ID
                                     <span class="sort-icon" onclick="sortTable(0)">▲</span> </th>
                                 <th class="py-3 px-6 text-teal-900 font-semibold">Customer <span class="sort-icon" onclick="sortTable(1)">▲</span></th>
                                 <th class="py-3 px-6 text-teal-900 font-semibold">Product <span class="sort-icon" onclick="sortTable(2)">▲</span></th>
@@ -222,7 +247,7 @@
                                 <td class="py-3 px-6">Organic Apples</td>
                                 <td class="py-3 px-6">Active</td>
                                 <td class="py-3 px-6">
-                                    <button class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600 mr-2">Deactivate</button>
+                                    <button class="inline-block bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600 mr-2">Deactivate</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -231,7 +256,7 @@
                                 <td class="py-3 px-6">Fresh Tomatoes</td>
                                 <td class="py-3 px-6">Inactive</td>
                                 <td class="py-3 px-6">
-                                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600">Activate</button>
+                                    <button class="inline-block bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600">Activate</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -240,7 +265,7 @@
                                 <td class="py-3 px-6">Organic Bananas</td>
                                 <td class="py-3 px-6">Active</td>
                                 <td class="py-3 px-6">
-                                    <button class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600 mr-2">Deactivate</button>
+                                    <button class="inline-block bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600 mr-2">Deactivate</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -249,7 +274,7 @@
                                 <td class="py-3 px-6">Whole Wheat Bread</td>
                                 <td class="py-3 px-6">Inactive</td>
                                 <td class="py-3 px-6">
-                                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600">Activate</button>
+                                    <button class="inline-block bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600">Activate</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -258,7 +283,7 @@
                                 <td class="py-3 px-6">Organic Milk</td>
                                 <td class="py-3 px-6">Inactive</td>
                                 <td class="py-3 px-6">
-                                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600">Activate</button>
+                                    <button class="inline-block bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600">Activate</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -267,7 +292,7 @@
                                 <td class="py-3 px-6">Greek Yogurt</td>
                                 <td class="py-3 px-6">Active</td>
                                 <td class="py-3 px-6">
-                                    <button class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600 mr-2">Deactivate</button>
+                                    <button class="inline-block bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-teal-600 mr-2">Deactivate</button>
                                 </td>
                             </tr>
                             <!-- Other rows -->
@@ -377,7 +402,7 @@
             rows.forEach(row => {
                 const subscriptionId = row.cells[0].innerText.toLowerCase();
                 const customerName = row.cells[1].innerText.toLowerCase();
-                if (subscriptionId.includes(searchQuery)|| customerName.includes(searchQuery)) {
+                if (subscriptionId.includes(searchQuery) || customerName.includes(searchQuery)) {
                     row.style.display = '';
                 } else {
                     row.style.display = 'none';
