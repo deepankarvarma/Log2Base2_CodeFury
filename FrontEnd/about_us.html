@@ -4,101 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <title>About Us - Freshly Delivered</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* General Styles */
-        
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+        body.dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
         }
-        
-        header {
-            background-color: #008080;
-            /* Teal Green */
-            color: white;
-            padding: 20px;
-            text-align: center;
+
+        body.dark-mode .bg-white {
+            background-color: #2d3748;
         }
-        
-        header nav {
-            margin-top: 10px;
+
+        body.dark-mode .text-gray-600 {
+            color: #e2e8f0;
         }
-        
-        header nav a {
-            color: white;
-            margin: 0 15px;
+
+        body.dark-mode .text-teal-600 {
+            color: #81e6d9;
+        }
+
+        #theme-toggle {
+            cursor: pointer;
+        }
+
+        #theme-icon {
+            transition: transform 0.3s ease;
+        }
+
+        body.dark-mode #theme-icon {
+            transform: rotate(180deg);
+        }
+
+        nav a {
+            position: relative;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: normal;
+            transition: color 0.3s ease, font-weight 0.3s ease;
         }
-        
-        header nav a:hover {
-            text-decoration: underline;
-        }
-        
-        .content {
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 800px;
-            background-color: white;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        /* About Us Section */
-        
-        .about-section h2 {
-            color: #008080;
-            /* Teal Green */
-            margin-top: 0;
-        }
-        
-        .about-section p,
-        .about-section ul {
-            line-height: 1.6;
-        }
-        
-        .about-section ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-        
-        footer {
-            background-color: #008080;
-            /* Teal Green */
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+
+        nav a:hover {
+            color: #38b2ac;
+            font-weight: 600;
         }
     </style>
 </head>
 
-<body>
+<body class="bg-gray-50 font-sans antialiased flex flex-col min-h-screen">
+    <!-- Header -->
     <header class="bg-white shadow-sm fade-slide-in">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-
             <div class="flex items-center">
-                <img src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" alt="Logo" class="w-12 h-12 mr-4">
-                <h1 class="text-3xl font-bold text-teal-600 ">Freshly Delivered</h1>
+                <img src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" alt="Logo"
+                    class="w-12 h-12 mr-4" />
+                <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
             </div>
             <nav class="bg-white flex items-center">
-
-                <!-- Profile Icon from Font Awesome -->
+                <!-- Profile Icon -->
                 <a href="profile.html" class="ml-4 text-teal-600 focus:outline-none">
                     <i class="fas fa-user-circle fa-2x mr-4"></i>
                 </a>
-                <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-
+                
                 <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
                     <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -107,36 +73,76 @@
                     </svg>
                 </button>
                 <!-- Logout Button with Logo -->
-                <button id="logout-button" class="flex items-center text-teal-600 px-4 py-2 ">
-                    <i class="fas fa-sign-out-alt "></i>
-                    
-                </button>
+                
             </nav>
-
         </div>
     </header>
 
-    <div class="content">
-        <section class="about-section">
-            <h2>Who We Are</h2>
-            <p>Welcome to Freshly Delivered, your number one source for fresh, organic food delivered straight to your door. We are dedicated to giving you the very best of fresh produce, with a focus on quality, customer service, and reliability.</p>
+    <!-- Main Content -->
+    <main class="container mx-auto mt-12 px-6 flex-grow">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <section class="about-section">
+                <h2 class="text-3xl font-bold text-teal-600 mb-6">Who We Are</h2>
+                <p>
+                    Welcome to Freshly Delivered, your number one source for fresh, organic food delivered straight to your
+                    door. We are dedicated to giving you the very best of fresh produce, with a focus on quality, customer
+                    service, and reliability.
+                </p>
 
-            <h2>Our Mission</h2>
-            <p>Our mission is to make healthy eating easy and accessible by providing a reliable subscription service for fresh food delivery. Whether you need organic fruits, vegetables, snacks, or ready-to-eat meals, we've got you covered.</p>
+                <h2 class="text-3xl font-bold text-teal-600 mt-8 mb-6">Our Mission</h2>
+                <p>
+                    Our mission is to make healthy eating easy and accessible by providing a reliable subscription service for
+                    fresh food delivery. Whether you need organic fruits, vegetables, snacks, or ready-to-eat meals, we've got
+                    you covered.
+                </p>
 
-            <h2>Why Choose Us?</h2>
-            <ul>
-                <li>High-Quality Products</li>
-                <li>Convenient Subscription Plans</li>
-                <li>Flexible Delivery Schedules</li>
-                <li>Exceptional Customer Support</li>
-            </ul>
-        </section>
-    </div>
+                <h2 class="text-3xl font-bold text-teal-600 mt-8 mb-6">Why Choose Us?</h2>
+                <ul class="list-disc pl-5">
+                    <li class="mb-2">High-Quality Products</li>
+                    <li class="mb-2">Convenient Subscription Plans</li>
+                    <li class="mb-2">Flexible Delivery Schedules</li>
+                    <li class="mb-2">Exceptional Customer Support</li>
+                </ul>
+            </section>
+        </div>
+    </main>
 
-    <footer>
-        <p>&copy; 2024 Freshly Delivered. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-8">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>&copy; 2024 Freshly Delivered &#124; Made by Log2Base2</p>
+        </div>
     </footer>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themePath = document.getElementById('theme-path');
+
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            if (currentTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themePath.setAttribute('d', 'M12 3v9l4 4');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    themePath.setAttribute('d', 'M12 3v9l4 4');
+                } else {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    themePath.setAttribute('d', 'M12 3v9l4 4');
+                }
+            });
+        });
+    </script>
+
+  
 </body>
 
 </html>

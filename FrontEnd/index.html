@@ -1,388 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" type="image" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png"
+      type="image"
+    />
     <title>Freshly Delivered - Subscription-based E-Commerce</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Default light mode styles */
-        
-        body {
-            background-color: #f9fafb;
-            color: #333;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        
-        body.dark-mode #theme-icon {
-            transform: rotate(180deg);
-        }
-        
-        .bg-gray-800 {
-            background-color: #2d3748;
-        }
-        
-        .bg-gray-900 {
-            background-color: #1a202c;
-        }
-        
-        .text-gray-100 {
-            color: #f7fafc;
-        }
-        
-        .text-gray-300 {
-            color: #e2e8f0;
-        }
-        
-        .text-gray-400 {
-            color: #cbd5e0;
-        }
-        
-        .bg-teal-500 {
-            background-color: #38b2ac;
-        }
-        
-        .bg-teal-600 {
-            background-color: #319795;
-        }
-        /* Dark mode styles */
-        
-        body.dark-mode {
-            background-color: #1a202c;
-            color: #e2e8f0;
-        }
-        
-        body.dark-mode .bg-white {
-            background-color: #2d3748;
-        }
-        
-        body.dark-mode .text-gray-600 {
-            color: #e2e8f0;
-        }
-        
-        body.dark-mode .text-teal-600 {
-            color: #81e6d9;
-        }
-        /* Add styles for the toggle button */
-        
-        #theme-toggle {
-            cursor: pointer;
-        }
-        
-        #theme-icon {
-            transition: transform 0.3s ease;
-        }
-        
-        body.dark-mode #theme-icon {
-            transform: rotate(180deg);
-        }
-        
-        nav a {
-            position: relative;
-            text-decoration: none;
-            font-weight: normal;
-            /* Default font weight */
-            transition: color 0.3s ease, font-weight 0.3s ease;
-        }
-        
-        nav a:hover {
-            color: #38b2ac;
-            /* Tailwind's teal-500 */
-            font-weight: 600;
-            /* Semi-bold font weight */
-        }
-        
-        .loader-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            /* Ensures it's above other content */
-        }
-        
-        .loader {
-            display: inline-flex;
-            gap: 5px;
-        }
-        
-        .loader:before,
-        .loader:after {
-            content: "";
-            width: 25px;
-            aspect-ratio: 1;
-            box-shadow: 0 0 0 3px inset #fff;
-            animation: l5 1.5s infinite;
-        }
-        
-        .loader:after {
-            --s: -1;
-        }
-        
-        @keyframes l5 {
-            0% {
-                transform: scaleX(var(--s, 1)) translate(0) scale(1);
-            }
-            33% {
-                transform: scaleX(var(--s, 1)) translate(calc(50% + 2.5px)) scale(1);
-            }
-            66% {
-                transform: scaleX(var(--s, 1)) translate(calc(50% + 2.5px)) scale(2);
-            }
-            100% {
-                transform: scaleX(var(--s, 1)) translate(0) scale(1);
-            }
-        }
-        /* Page content animation */
-        
-        .fade-slide-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .fade-slide-in.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-        }
-        
-        .menu-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        
-        .menu-content {
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            border-radius: 0.5rem;
-            width: 80%;
-            max-width: 400px;
-            transform: translateY(-20px);
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            opacity: 0;
-        }
-        
-        .menu-overlay.open .menu-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .menu-close {
-            cursor: pointer;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2rem;
-            color: white;
-            z-index: 1000;
-            /* Ensure it appears above other elements */
-        }
-        /* Define keyframes for typing animation */
-        
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
-        /* Define keyframes for blinking cursor */
-        
-        @keyframes blink {
-            50% {
-                border-color: transparent;
-            }
-        }
-        /* Style for the element with typing animation */
-        
-        .typing-animation {
-            display: inline-block;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 0.15em solid transparent;
-            /* Set the initial color to transparent */
-            transition: border-color 0.5s ease;
-            /* Smooth transition for the border color */
-        }
-        /* Apply the typing animation on hover */
-        
-        .typing-animation:hover {
-            border-right: 0.15em solid teal;
-            /* Set the border color on hover */
-            animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
-        }
-    </style>
-</head>
+      /* Default light mode styles */
 
-<body class="bg-gray-50 font-sans antialiased flex flex-col min-h-screen">
+      body {
+        background-color: #f9fafb;
+        color: #333;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      body.dark-mode #theme-icon {
+        transform: rotate(180deg);
+      }
+
+      .bg-gray-800 {
+        background-color: #2d3748;
+      }
+
+      .bg-gray-900 {
+        background-color: #1a202c;
+      }
+
+      .text-gray-100 {
+        color: #f7fafc;
+      }
+
+      .text-gray-300 {
+        color: #e2e8f0;
+      }
+
+      .text-gray-400 {
+        color: #cbd5e0;
+      }
+
+      .bg-teal-500 {
+        background-color: #38b2ac;
+      }
+
+      .bg-teal-600 {
+        background-color: #319795;
+      }
+      /* Dark mode styles */
+
+      body.dark-mode {
+        background-color: #1a202c;
+        color: #e2e8f0;
+      }
+
+      body.dark-mode .bg-white {
+        background-color: #2d3748;
+      }
+
+      body.dark-mode .text-gray-600 {
+        color: #e2e8f0;
+      }
+
+      body.dark-mode .text-teal-600 {
+        color: #81e6d9;
+      }
+      /* Add styles for the toggle button */
+
+      #theme-toggle {
+        cursor: pointer;
+      }
+
+      #theme-icon {
+        transition: transform 0.3s ease;
+      }
+
+      body.dark-mode #theme-icon {
+        transform: rotate(180deg);
+      }
+
+      nav a {
+        position: relative;
+        text-decoration: none;
+        font-weight: normal;
+        /* Default font weight */
+        transition: color 0.3s ease, font-weight 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #38b2ac;
+        /* Tailwind's teal-500 */
+        font-weight: 600;
+        /* Semi-bold font weight */
+      }
+
+      .loader-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        /* Ensures it's above other content */
+      }
+
+      .loader {
+        display: inline-flex;
+        gap: 5px;
+      }
+
+      .loader:before,
+      .loader:after {
+        content: "";
+        width: 25px;
+        aspect-ratio: 1;
+        box-shadow: 0 0 0 3px inset #fff;
+        animation: l5 1.5s infinite;
+      }
+
+      .loader:after {
+        --s: -1;
+      }
+
+      @keyframes l5 {
+        0% {
+          transform: scaleX(var(--s, 1)) translate(0) scale(1);
+        }
+        33% {
+          transform: scaleX(var(--s, 1)) translate(calc(50% + 2.5px)) scale(1);
+        }
+        66% {
+          transform: scaleX(var(--s, 1)) translate(calc(50% + 2.5px)) scale(2);
+        }
+        100% {
+          transform: scaleX(var(--s, 1)) translate(0) scale(1);
+        }
+      }
+      /* Page content animation */
+
+      .fade-slide-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .fade-slide-in.loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+      }
+
+      .menu-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .menu-content {
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        border-radius: 0.5rem;
+        width: 80%;
+        max-width: 400px;
+        transform: translateY(-20px);
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        opacity: 0;
+      }
+
+      .menu-overlay.open .menu-content {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .menu-close {
+        cursor: pointer;
+        top: 1rem;
+        right: 1rem;
+        font-size: 2rem;
+        color: white;
+        z-index: 1000;
+        /* Ensure it appears above other elements */
+      }
+      /* Define keyframes for typing animation */
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      /* Define keyframes for blinking cursor */
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+      /* Style for the element with typing animation */
+
+      .typing-animation {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 0.15em solid transparent;
+        /* Set the initial color to transparent */
+        transition: border-color 0.5s ease;
+        /* Smooth transition for the border color */
+      }
+      /* Apply the typing animation on hover */
+
+      .typing-animation:hover {
+        border-right: 0.15em solid teal;
+        /* Set the border color on hover */
+        animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-50 font-sans antialiased flex flex-col min-h-screen">
     <div class="loader-overlay">
-        <div class="loader"></div>
+      <div class="loader"></div>
     </div>
     <!-- Header -->
     <header class="bg-white shadow-sm fade-slide-in">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" alt="Logo" class="w-12 h-12 mr-4">
-                <h1 class="text-3xl font-bold text-teal-600 ">Freshly Delivered</h1>
-            </div>
-            <nav class="bg-white flex items-center">
-                <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-                <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
-                <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 3v9l4 4"></path>
-                </svg>
-            </button>
-            </nav>
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <img
+            src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png"
+            alt="Logo"
+            class="w-12 h-12 mr-4"
+          />
+          <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
         </div>
+        <nav class="bg-white flex items-center">
+          <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+          <button
+            id="theme-toggle"
+            class="ml-4 text-teal-600 focus:outline-none"
+          >
+            <svg
+              id="theme-icon"
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="theme-path"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 3v9l4 4"
+              ></path>
+            </svg>
+          </button>
+        </nav>
+      </div>
     </header>
-
 
     <!-- Main Content -->
     <main class="container mx-auto mt-12 px-6 flex-grow fade-slide-in">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-extrabold text-gray-600 mb-4">Get Fresh Food Delivered Regularly!</h2>
-            <p class="text-lg text-gray-600">Sign up now for our subscription service and never run out of your favorite food items.</p>
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-extrabold text-gray-600 mb-4">
+          Get Fresh Food Delivered Regularly!
+        </h2>
+        <p class="text-lg text-gray-600">
+          Sign up now for our subscription service and never run out of your
+          favorite food items.
+        </p>
+      </div>
+
+      <!-- Feature Section -->
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+          <h3 class="text-2xl font-bold text-teal-600 mb-4">Fresh Produce</h3>
+          <p class="text-gray-600 mb-6">
+            Receive fresh fruits and vegetables delivered to your doorstep every
+            week.
+          </p>
+          <button
+            class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600"
+          >
+            Subscribe Now
+          </button>
         </div>
 
-        <!-- Feature Section -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-                <h3 class="text-2xl font-bold text-teal-600 mb-4">Fresh Produce</h3>
-                <p class="text-gray-600 mb-6">Receive fresh fruits and vegetables delivered to your doorstep every week.</p>
-                <button class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">Subscribe Now</button>
-            </div>
+        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+          <h3 class="text-2xl font-bold text-teal-600 mb-4">Dairy Products</h3>
+          <p class="text-gray-600 mb-6">
+            Enjoy a weekly supply of fresh milk, cheese, and other dairy
+            products.
+          </p>
+          <button
+            class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600"
+          >
+            Subscribe Now
+          </button>
+        </div>
 
-            <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-                <h3 class="text-2xl font-bold text-teal-600 mb-4">Dairy Products</h3>
-                <p class="text-gray-600 mb-6">Enjoy a weekly supply of fresh milk, cheese, and other dairy products.</p>
-                <button class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">Subscribe Now</button>
-            </div>
-
-            <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-                <h3 class="text-2xl font-bold text-teal-600 mb-4">Bakery Items</h3>
-                <p class="text-gray-600 mb-6">Get freshly baked bread, cakes, and pastries delivered daily.</p>
-                <button class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">Subscribe Now</button>
-            </div>
-        </section>
+        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+          <h3 class="text-2xl font-bold text-teal-600 mb-4">Bakery Items</h3>
+          <p class="text-gray-600 mb-6">
+            Get freshly baked bread, cakes, and pastries delivered daily.
+          </p>
+          <button
+            class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600"
+          >
+            Subscribe Now
+          </button>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white">
-        <div class="container mx-auto px-6 py-2 text-center">
-            <p>&copy; 2024 Freshly Delivered &#124; Made by Log2Base2</p>
-        </div>
+      <div class="container mx-auto px-6 py-2 text-center">
+        <p>&copy; 2024 Freshly Delivered &#124; Made by Log2Base2</p>
+      </div>
     </footer>
 
     <!-- Full Screen Menu -->
     <div id="menu-overlay" class="menu-overlay">
-        <div class="menu-content">
-            <span id="menu-close" class="menu-close"></span>
-            <nav>
-                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="register.html">Register</a>
-                <a class="block py-3 text-2xl  hover:text-teal-500 hover:font-semibold" href="login.html">Login</a>
-                <a class="block py-3 text-2xl  hover:text-teal-500 hover:font-semibold" href="about_us.html">About Us</a>
-                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="contact_us.html">Contact Us</a>
-            </nav>
-        </div>
+      <div class="menu-content">
+        <span id="menu-close" class="menu-close"></span>
+        <nav>
+          <a
+            class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold"
+            href="register.html"
+            >Register</a
+          >
+          <a
+            class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold"
+            href="login.html"
+            >Login</a
+          >
+          <a
+            class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold"
+            href="about_us.html"
+            >About Us</a
+          >
+          <a
+            class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold"
+            href="contact_us.html"
+            >Contact Us</a
+          >
+        </nav>
+      </div>
     </div>
 
     <script>
-        const hamburgerMenu = document.getElementById('hamburger-menu');
-        const menuOverlay = document.getElementById('menu-overlay');
-        const menuClose = document.getElementById('menu-close');
+      const hamburgerMenu = document.getElementById("hamburger-menu");
+      const menuOverlay = document.getElementById("menu-overlay");
+      const menuClose = document.getElementById("menu-close");
 
-        hamburgerMenu.addEventListener('click', () => {
-            menuOverlay.classList.add('open');
+      hamburgerMenu.addEventListener("click", () => {
+        menuOverlay.classList.add("open");
+      });
+
+      menuClose.addEventListener("click", () => {
+        menuOverlay.classList.remove("open");
+      });
+
+      menuOverlay.addEventListener("click", (e) => {
+        if (e.target === menuOverlay) {
+          menuOverlay.classList.remove("open");
+        }
+      });
+      window.addEventListener("load", () => {
+        const loaderOverlay = document.querySelector(".loader-overlay");
+
+        setTimeout(() => {
+          loaderOverlay.style.display = "none";
+        }, 1500); // 1500 milliseconds = 1.5 seconds
+      });
+      window.addEventListener("load", () => {
+        const loaderOverlay = document.querySelector(".loader-overlay");
+        const content = document.querySelectorAll(".fade-slide-in");
+
+        setTimeout(() => {
+          loaderOverlay.style.display = "none";
+
+          // Trigger the content animation after loader disappears
+          content.forEach((element) => {
+            element.classList.add("loaded");
+          });
+        }, 1500); // 1500 milliseconds = 1.5 seconds
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        const themeToggle = document.getElementById("theme-toggle");
+        const body = document.body;
+        const themeIcon = document.getElementById("theme-icon");
+        const themePath = document.getElementById("theme-path");
+
+        // Load saved theme from local storage or default to light mode
+        const currentTheme = localStorage.getItem("theme") || "light";
+        if (currentTheme === "dark") {
+          body.classList.add("dark-mode");
+          themePath.setAttribute("d", "M12 3v9l4 4");
+        }
+
+        themeToggle.addEventListener("click", () => {
+          if (body.classList.contains("dark-mode")) {
+            body.classList.remove("dark-mode");
+            localStorage.setItem("theme", "light");
+            themePath.setAttribute("d", "M12 3v9l4 4");
+          } else {
+            body.classList.add("dark-mode");
+            localStorage.setItem("theme", "dark");
+            themePath.setAttribute("d", "M12 3v9l4 4");
+          }
         });
-
-        menuClose.addEventListener('click', () => {
-            menuOverlay.classList.remove('open');
-        });
-
-        menuOverlay.addEventListener('click', (e) => {
-            if (e.target === menuOverlay) {
-                menuOverlay.classList.remove('open');
-            }
-        });
-        window.addEventListener('load', () => {
-            const loaderOverlay = document.querySelector('.loader-overlay');
-
-            setTimeout(() => {
-                loaderOverlay.style.display = 'none';
-            }, 1500); // 1500 milliseconds = 1.5 seconds
-        });
-        window.addEventListener('load', () => {
-            const loaderOverlay = document.querySelector('.loader-overlay');
-            const content = document.querySelectorAll('.fade-slide-in');
-
-            setTimeout(() => {
-                loaderOverlay.style.display = 'none';
-
-                // Trigger the content animation after loader disappears
-                content.forEach(element => {
-                    element.classList.add('loaded');
-                });
-            }, 1500); // 1500 milliseconds = 1.5 seconds
-        });
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggle = document.getElementById('theme-toggle');
-            const body = document.body;
-            const themeIcon = document.getElementById('theme-icon');
-            const themePath = document.getElementById('theme-path');
-
-            // Load saved theme from local storage or default to light mode
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            if (currentTheme === 'dark') {
-                body.classList.add('dark-mode');
-                themePath.setAttribute('d', 'M12 3v9l4 4');
-            }
-
-            themeToggle.addEventListener('click', () => {
-                if (body.classList.contains('dark-mode')) {
-                    body.classList.remove('dark-mode');
-                    localStorage.setItem('theme', 'light');
-                    themePath.setAttribute('d', 'M12 3v9l4 4');
-                } else {
-                    body.classList.add('dark-mode');
-                    localStorage.setItem('theme', 'dark');
-                    themePath.setAttribute('d', 'M12 3v9l4 4');
-                }
-            });
-        });
+      });
     </script>
-</body>
-
+  </body>
 </html>
