@@ -252,20 +252,28 @@
           </div>
 
           <!-- Graphical Representations -->
-          <div class="flex justify-between mb-8">
-            <div class="w-1/2 chart-container">
+           
+          <div
+            class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 mb-8"
+          >
+          <!-- <div class="flex justify-between mb-8"> -->
+            <div class="card">
+            <!-- <div class="w-1/2 chart-container"> -->
               <h3 class="text-xl font-semibold mb-4 text-teal-600">
                 Orders Overview
               </h3>
               <canvas id="ordersChart"></canvas>
-            </div>
+            <!-- </div> -->
+          </div>
 
-            <div class="w-1/2 chart-container">
+          <div class="card">
+            <!-- <div class="w-1/2 chart-container"> -->
               <h3 class="text-xl font-semibold mb-4 text-teal-600">
                 Subscriptions Overview
               </h3>
               <canvas id="subscriptionsChart"></canvas>
-            </div>
+            <!-- </div> -->
+          </div>
           </div>
         </main>
       </div>
