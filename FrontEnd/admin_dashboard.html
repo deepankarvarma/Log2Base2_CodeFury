@@ -46,7 +46,12 @@
       .bg-gray-900 {
         background-color: #1a202c;
       }
-
+      #theme-icon {
+        transition: transform 0.3s ease;
+      }
+      body.dark-mode #theme-icon {
+        transform: rotate(180deg);
+      }
       .text-gray-100 {
         color: #f7fafc;
       }
@@ -143,51 +148,58 @@
   <body class="font-sans antialiased text-gray-800">
     <!-- Header -->
     <header class="bg-white shadow-sm">
-      <div
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
-      >
-        <div class="flex items-center">
-          <img
-            src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png"
-            alt="Logo"
-            class="w-12 h-12 mr-4"
-          />
-          <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
-        </div>
-        <nav class="bg-white flex items-center">
-          <!-- Profile Icon from Font Awesome -->
-          <a href="profile.html" class="ml-4 text-teal-600 focus:outline-none">
-            <i class="fas fa-user-circle fa-2x"></i>
-          </a>
-          <!-- Logout Button with Logo -->
-          <button
-            id="logout-button"
-            class="flex items-center text-teal-600 px-4 py-2"
-          >
-            <i class="fas fa-sign-out-alt"></i>
-          </button>
-
-          <button id="theme-toggle" class="text-teal-600 focus:outline-none">
-            <svg
-              id="theme-icon"
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="container mx-auto px-6 py-4 flex justify-between items-center"
+        >
+          <div class="flex items-center">
+            <img
+              src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png"
+              alt="Logo"
+              class="w-12 h-12 mr-4"
+            />
+            <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
+          </div>
+          <nav class="bg-white flex items-center">
+            <!-- Profile Icon from Font Awesome -->
+            <a href="profile.html" class="ml-4 text-teal-600 focus:outline-none">
+              <i class="fas fa-user-circle fa-2x"></i>
+            </a>
+            <!-- Logout Button with Logo -->
+            <button
+              id="logout-button"
+              class="flex items-center text-teal-600 px-4 py-2"
             >
-              <path
-                id="theme-path"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 3v9l4 4"
-              ></path>
-            </svg>
-          </button>
-        </nav>
-      </div>
-    </header>
+              <i class="fas fa-sign-out-alt"></i>
+            </button>
+            <button id="theme-toggle" class="text-teal-600 focus:outline-none">
+              <svg
+                id="theme-icon"
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  id="theme-path"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v9l4 4"
+                ></path>
+              </svg>
+            </button>
+            <!-- Hamburger Menu Button -->
+            <!-- <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h16"></path>
+                      </svg>
+                  </button> -->
+          </nav>
+        </div>
+      </header>
 
     <!-- Dashboard Content -->
     <div class="container mx-auto my-12 px-4">
@@ -367,33 +379,32 @@
       });
     </script>
 
-    // Dark mode toggle functionality
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const themeToggle = document.getElementById("theme-toggle");
-        const body = document.body;
-        const themeIcon = document.getElementById("theme-icon");
-        const themePath = document.getElementById("theme-path");
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const themeToggle = document.getElementById("theme-toggle");
+      const body = document.body;
+      const themeIcon = document.getElementById("theme-icon");
+      const themePath = document.getElementById("theme-path");
 
-        // Load saved theme from local storage or default to light mode
-        const currentTheme = localStorage.getItem("theme") || "light";
-        if (currentTheme === "dark") {
+      // Load saved theme from local storage or default to light mode
+      const currentTheme = localStorage.getItem("theme") || "light";
+      if (currentTheme === "dark") {
+        body.classList.add("dark-mode");
+        themePath.setAttribute("d", "M12 3v9l4 4");
+      }
+
+      themeToggle.addEventListener("click", () => {
+        if (body.classList.contains("dark-mode")) {
+          body.classList.remove("dark-mode");
+          localStorage.setItem("theme", "light");
+          themePath.setAttribute("d", "M12 3v9l4 4");
+        } else {
           body.classList.add("dark-mode");
+          localStorage.setItem("theme", "dark");
           themePath.setAttribute("d", "M12 3v9l4 4");
         }
-
-        themeToggle.addEventListener("click", () => {
-          if (body.classList.contains("dark-mode")) {
-            body.classList.remove("dark-mode");
-            localStorage.setItem("theme", "light");
-            themePath.setAttribute("d", "M12 3v9l4 4");
-          } else {
-            body.classList.add("dark-mode");
-            localStorage.setItem("theme", "dark");
-            themePath.setAttribute("d", "M12 3v9l4 4");
-          }
-        });
       });
-    </script>
+    });
+  </script>
   </body>
 </html>
