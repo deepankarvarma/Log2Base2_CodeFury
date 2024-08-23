@@ -10,8 +10,6 @@
     });
 </script>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,77 +27,82 @@
             position: relative;
             text-decoration: none;
             font-weight: normal;
+            /* Default font weight */
             transition: color 0.3s ease, font-weight 0.3s ease;
         }
-
+        
         body.dark-mode #theme-icon {
             transform: rotate(180deg);
         }
-
+        
         nav a:hover {
             color: #38b2ac;
+            /* Tailwind's teal-500 */
             font-weight: 600;
+            /* Semi-bold font weight */
         }
-
+        
         body {
             background-color: #f9fafb;
             color: #333;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-
+        
         .bg-gray-800 {
             background-color: #2d3748;
         }
-
+        
         .bg-gray-900 {
             background-color: #1a202c;
         }
-
+        
         .text-gray-100 {
             color: #f7fafc;
         }
-
+        
         .text-gray-300 {
             color: #e2e8f0;
         }
-
+        
         .text-gray-400 {
             color: #cbd5e0;
         }
-
+        
         .bg-teal-500 {
             background-color: #38b2ac;
         }
-
+        
         .bg-teal-600 {
             background-color: #319795;
         }
-
+        /* Dark mode styles */
+        
         body.dark-mode {
             background-color: #1a202c;
             color: #e2e8f0;
         }
-
+        
         body.dark-mode .bg-white {
             background-color: #2d3748;
         }
-
+        
         body.dark-mode .text-gray-600 {
             color: #e2e8f0;
         }
-
+        
         body.dark-mode .text-teal-600 {
             color: #81e6d9;
         }
-
+        /* Add styles for the toggle button */
+        
         #theme-toggle {
             cursor: pointer;
         }
-
+        
         #theme-icon {
             transition: transform 0.3s ease;
         }
-
+        
         footer {
             background-color: #1a202c;
             color: white;
@@ -109,7 +112,7 @@
             text-align: center;
             padding: 10px 0;
         }
-
+        
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -125,12 +128,12 @@
             pointer-events: none;
             transition: opacity 0.5s ease;
         }
-
+        
         .menu-overlay.open {
             opacity: 1;
             pointer-events: auto;
         }
-
+        
         .menu-content {
             color: white;
             padding: 2rem;
@@ -142,12 +145,12 @@
             transition: transform 0.5s ease, opacity 0.5s ease;
             opacity: 0;
         }
-
+        
         .menu-overlay.open .menu-content {
             transform: translateY(0);
             opacity: 1;
         }
-
+        
         .menu-close {
             cursor: pointer;
             top: 1rem;
@@ -159,20 +162,22 @@
     </style>
 </head>
 
-<body class="font-sans antialiased text-gray-800 bg-gray-100">
+<body class="font-sans antialiased text-gray-800">
     <!-- Header -->
     <header class="bg-white shadow-sm fade-slide-in">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+
             <div class="flex items-center">
                 <img src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" alt="Logo" class="w-12 h-12 mr-4">
-                <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
+                <h1 class="text-3xl font-bold text-teal-600 ">Freshly Delivered</h1>
             </div>
             <nav class="bg-white flex items-center">
+                <!-- Logout Button with Logo -->
                 <button id="logout-button" class="flex items-center text-teal-600 bg-teal-100 px-4 py-2 rounded-lg hover:bg-teal-200">
                     <i class="fas fa-sign-out-alt mr-2"></i>
                     Logout
-                </button>
-                &nbsp; &nbsp;
+                </button> &nbsp; &nbsp;
+
                 <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -188,175 +193,154 @@
                     </svg>
                 </button>
             </nav>
+
         </div>
     </header>
 
-    <div class="flex">
-        <!-- Sidebar -->
-        <aside class="w-64 bg-gray-900 text-white h-screen p-4">
-            <nav>
-                <ul>
-                    <li><a href="view_subscriptions.html" class="block py-2 px-4 hover:bg-gray-700">View Subscription</a></li>
-                    <li><a href="my_subscriptions.html" class="block py-2 px-4 hover:bg-gray-700">My Subscriptions</a></li>
-                    <li><a href="browse_products.html" class="block py-2 px-4 bg-gray-700">Browse Products</a></li>
-                </ul>
-            </nav>
-        </aside>
+    <div class="container mx-auto my-12 px-4">
+        <div class="flex flex-wrap -mx-4">
 
-        <!-- Main Content Section -->
-        <main class="flex-1 p-8">
-            <h2 class="text-2xl font-semibold mb-4 text-teal-600">Browse Products</h2>
 
-            <!-- Search Bar -->
-            <div class="mb-6">
-                <div class="relative">
-                    <input
-                        type="text"
-                        id="search-input"
-                        placeholder="Search products..."
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    >
-                    <button
-                        id="search-button"
-                        class="absolute inset-y-0 right-0 px-4 py-2 bg-teal-500 text-white rounded-r-lg hover:bg-teal-600 focus:outline-none"
-                    >
-                        Search
-                    </button>
-                </div>
-            </div>
-
-            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="product-item bg-white p-4 rounded-lg shadow-lg">
-                    <img src="./img/apples.jpg" alt="Organic Apples" class="h-40 w-full object-cover rounded-t-lg">
-                    <h3 class="text-xl font-semibold mt-4">Organic Apples</h3>
-                    <p class="mt-2">₹80 per 1kg - Subscribe for weekly deliveries</p>
-                    <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
-                </div>
-                <div class="product-item bg-white p-4 rounded-lg shadow-lg">
-                    <img src="./img/carrots.png" alt="Fresh Carrots" class="h-40 w-full object-cover rounded-t-lg">
-                    <h3 class="text-xl font-semibold mt-4">Fresh Carrots</h3>
-                    <p class="mt-2">₹100 per 1kg - Subscribe for bi-weekly deliveries</p>
-                    <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
-                </div>
-                <div class="product-item bg-white p-4 rounded-lg shadow-lg">
-                    <img src="./img/snacks.png" alt="Healthy Snacks" class="h-40 w-full object-cover rounded-t-lg">
-                    <h3 class="text-xl font-semibold mt-4">Healthy Snacks</h3>
-                    <p class="mt-2">₹50 per pack - Subscribe for monthly deliveries</p>
-                    <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-lg">
-                    <img src="./img/bananas.jpg" alt="Organic Bananas" class="h-40 w-full object-cover rounded-t-lg">
-                    <h3 class="text-xl font-semibold mt-4">Organic Bananas</h3>
-                    <p class="mt-2">₹60 per dozen - Subscribe for weekly deliveries</p>
-                    <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-lg">
-                    <img src="./img/tomatoes.png" alt="Fresh Tomatoes" class="h-40 w-full object-cover rounded-t-lg">
-                    <h3 class="text-xl font-semibold mt-4">Fresh Tomatoes</h3>
-                    <p class="mt-2">₹70 per kg - Subscribe for bi-weekly deliveries</p>
-                    <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-lg">
-                    <img src="./img/bread.jpg" alt="Whole Wheat Bread" class="h-40 w-full object-cover rounded-t-lg">
-                    <h3 class="text-xl font-semibold mt-4">Whole Wheat Bread</h3>
-                    <p class="mt-2">₹40 per loaf - Subscribe for daily deliveries</p>
-                    <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-lg">
-                    <img src="./img/milk.png" alt="Organic Milk" class="h-40 w-full object-cover rounded-t-lg">
-                    <h3 class="text-xl font-semibold mt-4">Organic Milk</h3>
-                    <p class="mt-2">₹50 per liter - Subscribe for daily deliveries</p>
-                    <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-lg">
-                    <img src="./img/eggs.png" alt="Free-Range Eggs" class="h-40 w-full object-cover rounded-t-lg">
-                    <h3 class="text-xl font-semibold mt-4">Free-Range Eggs</h3>
-                    <p class="mt-2">₹90 per dozen - Subscribe for weekly deliveries</p>
-                    <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-lg">
-                    <img src="./img/yogurt.png" alt="Greek Yogurt" class="h-40 w-full object-cover rounded-t-lg">
-                    <h3 class="text-xl font-semibold mt-4">Greek Yogurt</h3>
-                    <p class="mt-2">₹120 per pack - Subscribe for bi-weekly deliveries</p>
-                    <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
+            <!-- Main Content Section -->
+            <main class="w-full md:w px-4">
+                <h2 class="text-2xl font-semibold mb-6 text-teal-600">Browse Products</h2>
+                <div class="mb-6">
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Search products..." class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+                        <button id="search-button" class="absolute inset-y-0 right-0 px-4 py-2 bg-teal-500 text-white rounded-r-lg hover:bg-teal-600 focus:outline-none">
+                            Search
+                        </button>
+                    </div>
                 </div>
 
-            </div>
-        </main>
+                <div class="flex flex-wrap gap-6">
+                    <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg">
+                            <img src="./img/apples.jpg" alt="Organic Apples" class="h-40 w-full object-cover rounded-t-lg">
+                            <h3 class="text-xl font-semibold mt-4">Organic Apples</h3>
+                            <p class="mt-2">₹80 per 1kg - Subscribe for weekly deliveries</p>
+                            <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
+                        </div>
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg">
+                            <img src="./img/carrots.png" alt="Fresh Carrots" class="h-40 w-full object-cover rounded-t-lg">
+                            <h3 class="text-xl font-semibold mt-4">Fresh Carrots</h3>
+                            <p class="mt-2">₹100 per 1kg - Subscribe for bi-weekly deliveries</p>
+                            <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
+                        </div>
+                        <div class="product-item bg-white p-4 rounded-lg shadow-lg">
+                            <img src="./img/snacks.png" alt="Healthy Snacks" class="h-40 w-full object-cover rounded-t-lg">
+                            <h3 class="text-xl font-semibold mt-4">Healthy Snacks</h3>
+                            <p class="mt-2">₹50 per pack - Subscribe for monthly deliveries</p>
+                            <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-lg">
+                            <img src="./img/bananas.jpg" alt="Organic Bananas" class="h-40 w-full object-cover rounded-t-lg">
+                            <h3 class="text-xl font-semibold mt-4">Organic Bananas</h3>
+                            <p class="mt-2">₹60 per dozen - Subscribe for weekly deliveries</p>
+                            <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-lg">
+                            <img src="./img/tomatoes.png" alt="Fresh Tomatoes" class="h-40 w-full object-cover rounded-t-lg">
+                            <h3 class="text-xl font-semibold mt-4">Fresh Tomatoes</h3>
+                            <p class="mt-2">₹70 per kg - Subscribe for bi-weekly deliveries</p>
+                            <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-lg">
+                            <img src="./img/bread.jpg" alt="Whole Wheat Bread" class="h-40 w-full object-cover rounded-t-lg">
+                            <h3 class="text-xl font-semibold mt-4">Whole Wheat Bread</h3>
+                            <p class="mt-2">₹40 per loaf - Subscribe for daily deliveries</p>
+                            <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-lg">
+                            <img src="./img/milk.png" alt="Organic Milk" class="h-40 w-full object-cover rounded-t-lg">
+                            <h3 class="text-xl font-semibold mt-4">Organic Milk</h3>
+                            <p class="mt-2">₹50 per liter - Subscribe for daily deliveries</p>
+                            <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-lg">
+                            <img src="./img/eggs.png" alt="Free-Range Eggs" class="h-40 w-full object-cover rounded-t-lg">
+                            <h3 class="text-xl font-semibold mt-4">Free-Range Eggs</h3>
+                            <p class="mt-2">₹90 per dozen - Subscribe for weekly deliveries</p>
+                            <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
+                        </div>
+                        <img src="./img/yogurt.png" alt="Greek Yogurt" class="h-40 w-full object-cover rounded-t-lg">
+                        <h3 class="text-xl font-semibold mt-4">Greek Yogurt</h3>
+                        <p class="mt-2">₹120 per pack - Subscribe for bi-weekly deliveries</p>
+                        <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Subscribe</button>
+                    </div>
+                </div>
+            </main>
+        </div>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Freshly Delivered. All rights reserved.</p>
+        <p>&copy; 2024 Freshly Delivered &#124; Made by Log2Base2</p>
     </footer>
 
-    <!-- Menu Overlay -->
+    <!-- Full Screen Menu -->
     <div id="menu-overlay" class="menu-overlay">
         <div class="menu-content">
-            <span class="menu-close">&times;</span>
-            <h2 class="text-2xl font-semibold mb-4">Menu</h2>
+            <span id="menu-close" class="menu-close"></span>
             <nav>
-                <ul>
-                    <li><a href="view-subscription.html" class="block py-2 px-4 hover:bg-gray-700">View Subscription</a></li>
-                    <li><a href="my-subscriptions.html" class="block py-2 px-4 hover:bg-gray-700">My Subscriptions</a></li>
-                    <li><a href="browse-products.html" class="block py-2 px-4 hover:bg-gray-700">Browse Products</a></li>
-                </ul>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="customer_dashboard.html">Dashboard</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="my_subscriptions.html">My Subscriptions</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="order_history.html">Order History</a>
             </nav>
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
-        document.getElementById('search-button').addEventListener('click', function () {
-            const searchTerm = document.getElementById('search-input').value.toLowerCase();
-            const products = document.querySelectorAll('.product-item');
-
-            products.forEach(product => {
-                const title = product.querySelector('h3').textContent.toLowerCase();
-                if (title.includes(searchTerm)) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-        });
-
-        // Also enable live search as the user types
-        document.getElementById('search-input').addEventListener('input', function () {
-            const searchTerm = this.value.toLowerCase();
-            const products = document.querySelectorAll('.product-item');
-
-            products.forEach(product => {
-                const title = product.querySelector('h3').textContent.toLowerCase();
-                if (title.includes(searchTerm)) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-        });
-
-        // Theme toggle script
-        document.getElementById('theme-toggle').addEventListener('click', function () {
-            document.body.classList.toggle('dark-mode');
-        });
-
-        // Menu overlay script
-        const menuOverlay = document.getElementById('menu-overlay');
         const hamburgerMenu = document.getElementById('hamburger-menu');
-        const menuClose = document.querySelector('.menu-close');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuClose = document.getElementById('menu-close');
 
-        hamburgerMenu.addEventListener('click', function () {
+        hamburgerMenu.addEventListener('click', () => {
             menuOverlay.classList.add('open');
         });
 
-        menuClose.addEventListener('click', function () {
+        menuClose.addEventListener('click', () => {
             menuOverlay.classList.remove('open');
+        });
+
+        menuOverlay.addEventListener('click', (e) => {
+            if (e.target === menuOverlay) {
+                menuOverlay.classList.remove('open');
+            }
+        });
+        document.getElementById('logout-button').addEventListener('click', () => {
+            // Remove the authentication flag from local storage
+            localStorage.removeItem('isAuthenticated');
+            // Redirect to the login page
+            window.location.href = 'login.html';
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themePath = document.getElementById('theme-path');
+
+            // Load saved theme from local storage or default to light mode
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            if (currentTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themePath.setAttribute('d', 'M12 3v9l4 4');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    themePath.setAttribute('d', 'M12 3v9l4 4');
+                } else {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    themePath.setAttribute('d', 'M12 3v9l4 4');
+                }
+            });
         });
     </script>
 </body>
 
 </html>
-
-
-
