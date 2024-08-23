@@ -1,416 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <link
-      rel="icon"
-      href="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png"
-      type="image"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+ <link
+            rel="icon"
+            href=
+"./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png"
+            type="image"
+        />
     <title>Login - Freshly Delivered</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      body {
-        background-color: #f9fafb;
+        body {
 
-        color: #333;
+background-color: #f9fafb;
 
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-      .bg-gray-800 {
-        background-color: #2d3748;
-      }
-      body.dark-mode #theme-icon {
-        transform: rotate(180deg);
-      }
-      .bg-gray-900 {
-        background-color: #1a202c;
-      }
+color: #333;
 
-      .text-gray-100 {
-        color: #f7fafc;
-      }
+transition: background-color 0.3s ease, color 0.3s ease;    
 
-      .text-gray-300 {
-        color: #e2e8f0;
-      }
+}
+        .bg-gray-800 {
+    background-color: #2d3748;
+}
+body.dark-mode #theme-icon {
+    transform: rotate(180deg);
+}
+.bg-gray-900 {
+    background-color: #1a202c;
+}
 
-      .text-gray-400 {
-        color: #cbd5e0;
-      }
+.text-gray-100 {
+    color: #f7fafc;
+}
 
-      .bg-teal-500 {
-        background-color: #38b2ac;
-      }
+.text-gray-300 {
+    color: #e2e8f0;
+}
 
-      .bg-teal-600 {
-        background-color: #319795;
-      }
+.text-gray-400 {
+    color: #cbd5e0;
+}
 
-      /* Dark mode styles */
-      body.dark-mode {
-        background-color: #1a202c;
-        color: #e2e8f0;
-      }
+.bg-teal-500 {
+    background-color: #38b2ac;
+}
 
-      body.dark-mode .bg-white {
-        background-color: #2d3748;
-      }
+.bg-teal-600 {
+    background-color: #319795;
+}
 
-      body.dark-mode .text-gray-600 {
-        color: #e2e8f0;
-      }
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}
 
-      body.dark-mode .text-teal-600 {
-        color: #81e6d9;
-      }
+body.dark-mode .bg-white {
+    background-color: #2d3748;
+}
 
-      /* Add styles for the toggle button */
-      #theme-toggle {
-        cursor: pointer;
-      }
+body.dark-mode .text-gray-600 {
+    color: #e2e8f0;
+}
 
-      #theme-icon {
-        transition: transform 0.3s ease;
-      }
-      nav a {
-        position: relative;
-        text-decoration: none;
-        font-weight: normal; /* Default font weight */
-        transition: color 0.3s ease, font-weight 0.3s ease;
-      }
+body.dark-mode .text-teal-600 {
+    color: #81e6d9;
+}
 
-      nav a:hover {
-        color: #38b2ac; /* Tailwind's teal-500 */
-        font-weight: 600; /* Semi-bold font weight */
-      }
 
-      .menu-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.5s ease;
-      }
 
-      .menu-overlay.open {
-        opacity: 1;
-        pointer-events: auto;
-      }
+/* Add styles for the toggle button */
+#theme-toggle {
+    cursor: pointer;
+}
 
-      .menu-content {
-        color: white;
-        padding: 2rem;
-        text-align: center;
-        border-radius: 0.5rem;
-        width: 80%;
-        max-width: 400px;
-        transform: translateY(-20px);
-        transition: transform 0.5s ease, opacity 0.5s ease;
-        opacity: 0;
-      }
+#theme-icon {
+    transition: transform 0.3s ease;
+}
+               nav a {
+    position: relative;
+    text-decoration: none;
+    font-weight: normal; /* Default font weight */
+    transition: color 0.3s ease, font-weight 0.3s ease;
+}
 
-      .menu-overlay.open .menu-content {
-        transform: translateY(0);
-        opacity: 1;
-      }
+nav a:hover {
+    color: #38b2ac; /* Tailwind's teal-500 */
+    font-weight: 600; /* Semi-bold font weight */
+} 
 
-      .menu-close {
-        cursor: pointer;
-        top: 1rem;
-        right: 1rem;
-        font-size: 2rem;
-        color: white;
-        z-index: 1000; /* Ensure it appears above other elements */
-      }
+        .menu-overlay {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: rgba(0, 0, 0, 0.9);
+         z-index: 999;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         opacity: 0;
+         pointer-events: none;
+         transition: opacity 0.5s ease;
+     }
+     
+     .menu-overlay.open {
+         opacity: 1;
+         pointer-events: auto;
+     }
+     
+     .menu-content {
+         color: white;
+         padding: 2rem;
+         text-align: center;
+         border-radius: 0.5rem;
+         width: 80%;
+         max-width: 400px;
+         transform: translateY(-20px);
+         transition: transform 0.5s ease, opacity 0.5s ease;
+         opacity: 0;
+     }
+     
+     .menu-overlay.open .menu-content {
+         transform: translateY(0);
+         opacity: 1;
+     }
+     
+     .menu-close {
+         cursor: pointer;
+         top: 1rem;
+         right: 1rem;
+         font-size: 2rem;
+         color: white;
+         z-index: 1000; /* Ensure it appears above other elements */
+     }
+     
+        /* Optional: Adjust icon positioning if necessary */
+.relative {
+    position: relative;
+}
 
-      /* Optional: Adjust icon positioning if necessary */
-      .relative {
-        position: relative;
-      }
+#togglePassword {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-10%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+         </style>
+</head>
 
-      #togglePassword {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-10%);
-        background: none;
-        border: none;
-        cursor: pointer;
-      }
-    </style>
-  </head>
-
-  <body class="bg-gray-50 font-sans antialiased flex flex-col min-h-screen">
+<body class="bg-gray-50 font-sans antialiased flex flex-col min-h-screen">
     <!-- Header -->
     <header class="bg-white shadow-sm fade-slide-in">
-      <div
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
-      >
-        <div class="flex items-center">
-          <img
-            src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png"
-            alt="Logo"
-            class="w-12 h-12 mr-4"
-          />
-          <h1 class="text-3xl font-bold text-teal-600">Freshly Delivered</h1>
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <div class="flex items-center">
+                <img src="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" alt="Logo" class="w-12 h-12 mr-4">
+                <h1 class="text-3xl font-bold text-teal-600 ">Freshly Delivered</h1>
+            </div>
+            <nav class="bg-white flex items-center">
+                <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="ml-4 text-teal-600 focus:outline-none">
+                    <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v9l4 4"></path>
+                    </svg>
+                </button>
+            </nav>
+            
         </div>
-        <nav class="bg-white flex items-center">
-          <button id="hamburger-menu" class="text-teal-600 focus:outline-none">
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </button>
-          <button
-            id="theme-toggle"
-            class="ml-4 text-teal-600 focus:outline-none"
-          >
-            <svg
-              id="theme-icon"
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                id="theme-path"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 3v9l4 4"
-              ></path>
-            </svg>
-          </button>
-        </nav>
-      </div>
     </header>
 
     <!-- Main Content -->
     <main class="container mx-auto mt-12 px-6 flex-grow">
-      <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg p-8">
-        <h2 class="text-3xl font-extrabold text-gray-600 mb-6 text-center">
-          Sign in to your account
-        </h2>
-        <form id="loginForm" class="space-y-6">
-          <div>
-            <label for="email" class="block text-sm font-medium text-gray-600"
-              >Email:</label
-            >
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-            />
-          </div>
-          <div class="relative">
-            <label
-              for="password"
-              class="block text-sm font-medium text-gray-600"
-              >Password:</label
-            >
-            <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-            />
-            <button
-              type="button"
-              id="togglePassword"
-              class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-600 hover:text-gray-600"
-            >
-              <i class="fas fa-eye"></i>
-              <!-- Font Awesome icon -->
-            </button>
-          </div>
-          <p id="error-message" class="text-red-600 text-sm"></p>
-          <div>
-            <button
-              type="submit"
-              onclick="login()"
-              class="w-full bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600"
-            >
-              Login
-            </button>
-          </div>
-          <p class="text-sm text-gray-600 text-center">
-            Not a member?
-            <a href="register.html" class="text-teal-500 hover:underline"
-              >Create an account here</a
-            >
-          </p>
-        </form>
-      </div>
+        <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg p-8">
+            <h2 class="text-3xl font-extrabold text-gray-600 mb-6 text-center">Sign in to your account </h2>
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-black-600">Email:</label>
+                    <input type="email" id="email" name="email" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm text-black">
+                </div>
+                <div class="relative">
+                    <label for="password" class="block text-sm font-medium text-gray-600">Password:</label>
+                    <input type="password" id="password" name="password" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm text-black">
+                    <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-600 hover:text-gray-600">
+                        <i class="fas fa-eye"></i> <!-- Font Awesome icon -->
+                    </button>
+                </div>
+                <p id="error-message" class="text-red-600 text-sm"></p>
+                <div>
+                    <button type="submit" onclick="login()"
+                        class="w-full bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">Login</button>
+                </div>
+                <p class="text-sm text-gray-600 text-center">
+                    Not a member? <a href="register.html" class="text-teal-500 hover:underline">Create an account here</a>
+                </p>
+            </form>
+            
+        </div>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white mt-12">
-      <div class="container mx-auto px-6 py-2 text-center">
-        <p>&copy; 2024 Freshly Delivered &#124; Made by Log2Base2</p>
-      </div>
+        <div class="container mx-auto px-6 py-2 text-center">
+            <p>&copy; 2024 Freshly Delivered &#124; Made by Log2Base2</p>
+        </div>
     </footer>
-    <!-- Full Screen Menu -->
+      <!-- Full Screen Menu -->
     <div id="menu-overlay" class="menu-overlay">
-      <div class="menu-content">
-        <span id="menu-close" class="menu-close"></span>
-        <nav>
-          <a
-            class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold"
-            href="register.html"
-            >Register</a
-          >
-          <a
-            class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold"
-            href="index.html"
-            >Home</a
-          >
-          <a
-            class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold"
-            href="about.html"
-            >About Us</a
-          >
-          <a
-            class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold"
-            href="contact.html"
-            >Contact Us</a
-          >
-        </nav>
-      </div>
+        <div class="menu-content">
+            <span id="menu-close" class="menu-close"></span>
+            <nav>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="register.html">Register</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="index.html">Home</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="about.html">About Us</a>
+                <a class="block py-3 text-2xl hover:text-teal-500 hover:font-semibold" href="contact.html">Contact Us</a>
+            </nav>
+        </div>
     </div>
     <script>
-      const togglePassword = document.getElementById("togglePassword");
-      const passwordField = document.getElementById("password");
+         const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password');
 
-      togglePassword.addEventListener("click", function () {
+    togglePassword.addEventListener('click', function () {
         // Toggle the type attribute of the password field
-        const type = passwordField.type === "password" ? "text" : "password";
+        const type = passwordField.type === 'password' ? 'text' : 'password';
         passwordField.type = type;
-
+        
         // Toggle the eye icon
-        this.querySelector("i").classList.toggle("fa-eye");
-        this.querySelector("i").classList.toggle("fa-eye-slash");
-      });
-      const hamburgerMenu = document.getElementById("hamburger-menu");
-      const menuOverlay = document.getElementById("menu-overlay");
-      const menuClose = document.getElementById("menu-close");
+        this.querySelector('i').classList.toggle('fa-eye');
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuClose = document.getElementById('menu-close');
 
-      hamburgerMenu.addEventListener("click", () => {
-        menuOverlay.classList.add("open");
-      });
-
-      menuClose.addEventListener("click", () => {
-        menuOverlay.classList.remove("open");
-      });
-
-      menuOverlay.addEventListener("click", (e) => {
-        if (e.target === menuOverlay) {
-          menuOverlay.classList.remove("open");
-        }
-      });
-
-      function login() {
-        event.preventDefault();
-
-        const accessMap = new Map([
-          ["abc@xyz.com", ["1111", "admin"]],
-          ["def@xyz.com", ["2222", "customer"]],
-          ["ghi@xyz.com", ["3333", "customer"]],
-        ]);
-
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value.trim();
-
-        document.getElementById("error-message").innerText = "";
-
-        // Validate email and password
-        if (email === "") {
-          document.getElementById("error-message").innerText =
-            "Email is required.";
-          return;
-        } else if (password === "") {
-          document.getElementById("error-message").innerText =
-            "Password is required.";
-          return;
-        } else if (email.length < 3) {
-          document.getElementById("error-message").innerText =
-            "Email must be at least 3 characters long.";
-          return;
-        } else if (password.length < 3) {
-          document.getElementById("error-message").innerText =
-            "Password must be at least 3 characters long.";
-          return;
-        } else if (accessMap.get(email)[0] != password) {
-          document.getElementById("error-message").innerText =
-            "Incorrect email and password combination.";
-          return;
-        } else {
-          if (accessMap.get(email)[1] === "admin") {
-            localStorage.setItem("isAuthenticated", "true");
-            window.location.href = "admin_dashboard.html";
-          } else {
-            localStorage.setItem("isAuthenticated", "true");
-            window.location.href = "customer_dashboard.html";
-          }
-        }
-      }
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const themeToggle = document.getElementById("theme-toggle");
-        const body = document.body;
-        const themeIcon = document.getElementById("theme-icon");
-        const themePath = document.getElementById("theme-path");
-
-        // Load saved theme from local storage or default to light mode
-        const currentTheme = localStorage.getItem("theme") || "light";
-        if (currentTheme === "dark") {
-          body.classList.add("dark-mode");
-          themePath.setAttribute("d", "M12 3v9l4 4");
-        }
-
-        themeToggle.addEventListener("click", () => {
-          if (body.classList.contains("dark-mode")) {
-            body.classList.remove("dark-mode");
-            localStorage.setItem("theme", "light");
-            themePath.setAttribute("d", "M12 3v9l4 4");
-          } else {
-            body.classList.add("dark-mode");
-            localStorage.setItem("theme", "dark");
-            themePath.setAttribute("d", "M12 3v9l4 4");
-          }
+        hamburgerMenu.addEventListener('click', () => {
+            menuOverlay.classList.add('open');
         });
-      });
+
+        menuClose.addEventListener('click', () => {
+            menuOverlay.classList.remove('open');
+        });
+
+        menuOverlay.addEventListener('click', (e) => {
+            if (e.target === menuOverlay) {
+                menuOverlay.classList.remove('open');
+            }
+        });
+        
+        function login() {
+            event.preventDefault();
+
+            const accessMap = new Map([
+                ["abc@xyz.com", ["1111", "admin"]],
+                ["def@xyz.com", ["2222", "customer"]],
+                ["ghi@xyz.com", ["3333", "customer"]]
+            ]);
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            document.getElementById("error-message").innerText = "";
+
+            // Validate email and password
+            if (email === "") {
+                document.getElementById("error-message").innerText = "Email is required.";
+                return;
+            } else if (password === "") {
+                document.getElementById("error-message").innerText = "Password is required.";
+                return;
+            } else if (email.length < 3) {
+                document.getElementById("error-message").innerText = "Email must be at least 3 characters long.";
+                return;
+            } else if (password.length < 3) {
+                document.getElementById("error-message").innerText = "Password must be at least 3 characters long.";
+                return;
+            } else if (accessMap.get(email)[0] != password) {
+                document.getElementById("error-message").innerText = "Incorrect email and password combination.";
+                return;
+            } else {
+                if (accessMap.get(email)[1] === "admin") {
+                    localStorage.setItem('isAuthenticated', 'true');
+                    window.location.href = "admin_dashboard.html";
+                } else {
+                    localStorage.setItem('isAuthenticated', 'true');
+                    window.location.href = "customer_dashboard.html";
+                }
+            }
+        }
+       
     </script>
-  </body>
+    <script> 
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const themeIcon = document.getElementById('theme-icon');
+        const themePath = document.getElementById('theme-path');
+    
+        // Load saved theme from local storage or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themePath.setAttribute('d', 'M12 3v9l4 4');
+        }
+    
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                themePath.setAttribute('d', 'M12 3v9l4 4');
+            } else {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                themePath.setAttribute('d', 'M12 3v9l4 4');
+            }
+        });
+    });
+    </script>
+</body>
+
 </html>
