@@ -16,12 +16,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-    rel="icon"
-    href=
-"./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png"
-    type="image"
-/>
+    <link rel="icon" href="./img/WhatsApp_Image_2024-08-20_at_13.49.25-removebg-preview.png" type="image" />
     <title>Customer Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -29,73 +24,70 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-
-background-color: #f9fafb;
-
-color: #333;
-
-transition: background-color 0.3s ease, color 0.3s ease;    
-
-}
+            background-color: #f9fafb;
+            color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
         .bg-gray-800 {
-    background-color: #2d3748;
-}
-body.dark-mode #theme-icon {
-    transform: rotate(180deg);
-}
-.bg-gray-900 {
-    background-color: #1a202c;
-}
-
-.text-gray-100 {
-    color: #f7fafc;
-}
-
-.text-gray-300 {
-    color: #e2e8f0;
-}
-
-.text-gray-400 {
-    color: #cbd5e0;
-}
-
-.bg-teal-500 {
-    background-color: #38b2ac;
-}
-
-.bg-teal-600 {
-    background-color: #319795;
-}
-
-/* Dark mode styles */
-body.dark-mode {
-    background-color: #1a202c;
-    color: #e2e8f0;
-}
-
-body.dark-mode .bg-white {
-    background-color: #2d3748;
-}
-
-body.dark-mode .text-gray-600 {
-    color: #e2e8f0;
-}
-
-body.dark-mode .text-teal-600 {
-    color: #81e6d9;
-}
-
-
-
-/* Add styles for the toggle button */
-#theme-toggle {
-    cursor: pointer;
-}
-
-#theme-icon {
-    transition: transform 0.3s ease;
-}
-
+            background-color: #2d3748;
+        }
+        
+        body.dark-mode #theme-icon {
+            transform: rotate(180deg);
+        }
+        
+        .bg-gray-900 {
+            background-color: #1a202c;
+        }
+        
+        .text-gray-100 {
+            color: #f7fafc;
+        }
+        
+        .text-gray-300 {
+            color: #e2e8f0;
+        }
+        
+        .text-gray-400 {
+            color: #cbd5e0;
+        }
+        
+        .bg-teal-500 {
+            background-color: #38b2ac;
+        }
+        
+        .bg-teal-600 {
+            background-color: #319795;
+        }
+        /* Dark mode styles */
+        
+        body.dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .bg-white {
+            background-color: #2d3748;
+        }
+        
+        body.dark-mode .text-gray-600 {
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .text-teal-600 {
+            color: #81e6d9;
+        }
+        /* Add styles for the toggle button */
+        
+        #theme-toggle {
+            cursor: pointer;
+        }
+        
+        #theme-icon {
+            transition: transform 0.3s ease;
+        }
+        
         footer {
             background-color: #1a202c;
             color: white;
@@ -105,7 +97,7 @@ body.dark-mode .text-teal-600 {
             text-align: center;
             padding: 10px 0;
         }
-
+        
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -121,12 +113,12 @@ body.dark-mode .text-teal-600 {
             pointer-events: none;
             transition: opacity 0.5s ease;
         }
-
+        
         .menu-overlay.open {
             opacity: 1;
             pointer-events: auto;
         }
-
+        
         .menu-content {
             color: white;
             padding: 2rem;
@@ -138,12 +130,12 @@ body.dark-mode .text-teal-600 {
             transition: transform 0.5s ease, opacity 0.5s ease;
             opacity: 0;
         }
-
+        
         .menu-overlay.open .menu-content {
             transform: translateY(0);
             opacity: 1;
         }
-
+        
         .menu-close {
             cursor: pointer;
             top: 1rem;
@@ -205,7 +197,7 @@ body.dark-mode .text-teal-600 {
                     </div>
                 </main>
             </div>
-            
+
         </div>
     </div>
 
@@ -230,12 +222,12 @@ body.dark-mode .text-teal-600 {
         const menuOverlay = document.getElementById('menu-overlay');
         const menuClose = document.getElementById('menu-close');
         document.getElementById('logout-button').addEventListener('click', () => {
-        // Remove the authentication flag from local storage
-        localStorage.removeItem('isAuthenticated');
-        // Redirect to the login page
-        window.location.href = 'login.html';
-    });
-        
+            // Remove the authentication flag from local storage
+            localStorage.removeItem('isAuthenticated');
+            // Redirect to the login page
+            window.location.href = 'login.html';
+        });
+
         hamburgerMenu.addEventListener('click', () => {
             menuOverlay.classList.add('open');
         });
@@ -249,35 +241,34 @@ body.dark-mode .text-teal-600 {
                 menuOverlay.classList.remove('open');
             }
         });
-      
     </script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const themeIcon = document.getElementById('theme-icon');
-    const themePath = document.getElementById('theme-path');
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themePath = document.getElementById('theme-path');
 
-    // Load saved theme from local storage or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    if (currentTheme === 'dark') {
-        body.classList.add('dark-mode');
-        themePath.setAttribute('d', 'M12 3v9l4 4');
-    }
+            // Load saved theme from local storage or default to light mode
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            if (currentTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themePath.setAttribute('d', 'M12 3v9l4 4');
+            }
 
-    themeToggle.addEventListener('click', () => {
-        if (body.classList.contains('dark-mode')) {
-            body.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
-            themePath.setAttribute('d', 'M12 3v9l4 4');
-        } else {
-            body.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark');
-            themePath.setAttribute('d', 'M12 3v9l4 4');
-        }
-    });
-});
-   </script>
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    themePath.setAttribute('d', 'M12 3v9l4 4');
+                } else {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    themePath.setAttribute('d', 'M12 3v9l4 4');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
