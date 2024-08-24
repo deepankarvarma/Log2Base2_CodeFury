@@ -1,5 +1,5 @@
 # Subscription based E-Commerce Web application 
-# Team Name : Log2Base2
+## Team Name : Log2Base2
 
 
 ## Description
@@ -18,7 +18,7 @@
 
 ## Installation
 1. Clone the repository:
-   `git clone https://github.com/username/project-name.git`
+   `https://github.com/suhanidesale/Log2Base2_CodeFury.git`
    
 2. Navigate to the project directory:
   for frontend: cd application/frontend/
