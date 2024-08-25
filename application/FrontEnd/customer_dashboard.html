@@ -212,35 +212,32 @@
       </div>
     </header>
 
-    <!-- Main Content Wrapper -->
-    <div class="flex">
-      <!-- Sidebar/Menu -->
-      <div
-        class="w-64 h-screen bg-gray-900 text-white flex-shrink-0 p-6 hidden md:block"
-      >
-        <nav class="space-y-4">
-          <a
-            class="block py-2 text-xl hover:text-teal-500"
-            href="browse_products.html"
-            >Browse Products</a
+    <div class="container mx-auto my-12 px-4">
+      <div class="flex flex-wrap -mx-4">
+        <aside class="w-full md:w-1/4 mb-8 md:mb-0 px-4">
+          <nav class="bg-white shadow-lg p-6 rounded-lg">
+            <a
+              class="block py-2 px-4 rounded-lg hover:bg-teal-100 mb-2"
+              href="browse_products.html"
+              >Browse Products</a
+            >
+            <a
+              class="block py-2 px-4 rounded-lg hover:bg-teal-100 mb-2"
+              href="my_subscriptions.html"
+              >My Subscriptions</a
+            >
+            <a
+              class="block py-2 px-4 rounded-lg hover:bg-teal-100 mb-2"
+              href="order_history.html"
+              >Order History</a
+            >
+             
+          </nav>
+        </aside>
+        <main class="w-full md:w-3/4 px-4">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
           >
-          <a
-            class="block py-2 text-xl hover:text-teal-500"
-            href="my_subscriptions.html"
-            >My Subscriptions</a
-          >
-          <a
-            class="block py-2 text-xl hover:text-teal-500"
-            href="order_history.html"
-            >Order History</a
-          >
-        </nav>
-      </div>
-
-      <!-- Main Content -->
-      <div class="container mx-auto my-12 px-4 flex-1">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <!-- Card 1: Total Orders -->
           <div class="card">
             <h3 class="text-xl font-semibold text-teal-600 mb-4">
               Total Orders
