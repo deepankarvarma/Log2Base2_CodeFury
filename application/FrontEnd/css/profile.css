@@ -1,0 +1,120 @@
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .menu-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .menu-content {
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            width: 80%;
+            max-width: 400px;
+            transform: translateY(-20px);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+        
+        .menu-overlay.open .menu-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .menu-close {
+            cursor: pointer;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: white;
+            z-index: 1000;
+            /* Ensure it appears above other elements */
+        }
+        body.dark-mode #theme-icon {
+            transform: rotate(180deg);
+        }
+        
+        .bg-gray-800 {
+            background-color: #2d3748;
+        }
+        
+        .bg-gray-900 {
+            background-color: #1a202c;
+        }
+        
+        .text-gray-100 {
+            color: #f7fafc;
+        }
+        
+        .text-gray-300 {
+            color: #e2e8f0;
+        }
+        
+        .text-gray-400 {
+            color: #cbd5e0;
+        }
+        
+        .bg-teal-500 {
+            background-color: #38b2ac;
+        }
+        
+        .bg-teal-600 {
+            background-color: #319795;
+        }
+        /* Dark mode styles */
+        
+        body.dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .bg-white {
+            background-color: #2d3748;
+        }
+        
+        body.dark-mode .text-gray-600 {
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .text-teal-600 {
+            color: #81e6d9;
+        }
+        
+        #theme-toggle {
+            cursor: pointer;
+        }
+        
+        #theme-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        body.dark-mode #theme-icon {
+            transform: rotate(180deg);
+        }
+        
+        nav a {
+            position: relative;
+            text-decoration: none;
+            font-weight: normal;
+            transition: color 0.3s ease, font-weight 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #38b2ac;
+            font-weight: 600;
+        }
