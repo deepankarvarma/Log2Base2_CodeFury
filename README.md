@@ -14,7 +14,7 @@
 
    - **For Frontend:**
       - Hosted Link for frontend Pages : [https://log2-base2-code-fury-hse1.vercel.app/](https://log2-base2-code-fury-hse1.vercel.app/)
-
+      - Frontend Demonstration Video: [Link](https://drive.google.com/file/d/1leRO-YRQHYM2Mcm8HZcn3iojQPldIRWn/view?usp=drive_link)
       - Credentials:
        
           - Admin 
