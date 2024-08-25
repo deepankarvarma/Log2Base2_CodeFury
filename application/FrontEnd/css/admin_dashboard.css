@@ -1,0 +1,110 @@
+      /* General styles and dark mode configuration (unchanged) */
+      body {
+        background-color: #f9fafb;
+        color: #333;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .bg-gray-800 {
+        background-color: #2d3748;
+      }
+
+      .bg-gray-900 {
+        background-color: #1a202c;
+      }
+      #theme-icon {
+        transition: transform 0.3s ease;
+      }
+      body.dark-mode #theme-icon {
+        transform: rotate(180deg);
+      }
+      .text-gray-100 {
+        color: #f7fafc;
+      }
+
+      .text-gray-300 {
+        color: #e2e8f0;
+      }
+
+      .text-gray-400 {
+        color: #cbd5e0;
+      }
+
+      .bg-teal-500 {
+        background-color: #38b2ac;
+      }
+
+      .bg-teal-600 {
+        background-color: #319795;
+      }
+
+      body.dark-mode {
+        background-color: #1a202c;
+        color: #e2e8f0;
+      }
+
+      body.dark-mode .bg-white {
+        background-color: #2d3748;
+      }
+
+      body.dark-mode .text-gray-600 {
+        color: #e2e8f0;
+      }
+
+      body.dark-mode .text-teal-600 {
+        color: #81e6d9;
+      }
+
+      footer {
+        background-color: #1a202c;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      /* Dashboard cards styles */
+      .card {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #319795;
+      }
+
+      .card p {
+        font-size: 1.25rem;
+        color: #4a5568;
+      }
+
+      .chart-container {
+        margin-top: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Dark mode for cards and charts */
+      body.dark-mode .card {
+        background-color: #2d3748;
+        color: #e2e8f0;
+      }
+
+      body.dark-mode .chart-container {
+        background-color: #2d3748;
+      }
