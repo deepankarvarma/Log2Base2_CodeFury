@@ -1,41 +1,61 @@
 # Subscription based E-Commerce Web application 
 ## Team Name : Log2Base2
 
-
-## Description
-
-
 ## Table of Contents
 1. Installation
-2. Usage
-3. Features
-4. Configuration
-5. Contributing
-6. Tests
-7. License
-8. Acknowledgments
-9. Contact
+2. Dependencies
+3. Team Members
 
 ## Installation
 1. Clone the repository:
    `https://github.com/suhanidesale/Log2Base2_CodeFury.git`
    
 2. Navigate to the project directory:
-  for frontend: cd application/frontend/
-  for backend: cd application/backend/
 
-## Usage
-### For Backend:
+   - **For Frontend:**
+      - Hosted Link for frontend Pages : [https://log2-base2-code-fury-hse1.vercel.app/](https://log2-base2-code-fury-hse1.vercel.app/)
 
-1. Download sql file
-2. download the folder
-3. Make changes to DBUtils.java file by adding respective username and password
-4. Run TestApplication.java to run the entire backend application
-5. For running JUnit test cases go to src/test and run the required test files
-   
+      - Credentials:
+       
+          - Admin 
+            - Email : abc@xyz.com
+            - Password :  1111 
+            
+          - Customer 
+            - Email : def@xyz.com
+            - Password :  2222
+
+     - **Step 1:**
+       ```bash
+       cd application/frontend/login.html
+       ```
+     - **Step 2:** Click on **Go Live** (if using a tool like VS Code) or open any browser and type: `http://127.0.0.1:5500/index.html`
+
+   - **For backend:**
+     - **Step 1:**
+       ```bash
+       cd application/backend/TestApplication
+       ```
+     - **Step 2:** Open the SQL file in MySQL Workbench and execute the entire script.
+     - **Step 3:** Enter your MySQL credentials in `DBUtils`.
+     - **Step 4:** Run `src/main/java/com/hsbc/test/TestApplication.java`.
+     - **Step 5:** To run test cases, navigate to `src/test/java` and run the entire folder.
+
 ## Dependencies:
 
-### Backend Dependencies
+### Frontend Technology
+
+- **HTML**: Structure and content of the web pages
+- **CSS**: Tailwind CSS for styling and responsive design.
+- **JavaScript**: Handles user interactions and subscription management.
+
+### Backend Technology & Dependencies
+
+- **Java Development Kit (JDK) 17**: A development environment for building applications, and components using the Java programming language.
+   - Group ID: `org.openjdk`
+   - Artifact ID: `jdk`
+   - Version: `17`
+
 - **MySQL Connector/J**: A JDBC driver for MySQL.
   - **Group ID**: `mysql`
   - **Artifact ID**: `mysql-connector-java`
@@ -65,19 +85,14 @@
   - **Version**: `5.10.2`
   - **Scope**: `test`
    
-## Features
-
-### Backend
-
-### Frontend
 
 ## Team Members
 
-**Aniket Panda**  
-**Deepankar Varma**  
-**Dhriti Ahuja**  
-**Suhani Desale**  
-**Syed Ali Mujtaba**  
-**Vaishnavi Pawar**  
-**Zeeman Chandra Deka**
+- **Aniket Panda**  
+- **Deepankar Varma**  
+- **Dhriti Ahuja**  
+- **Suhani Desale**  
+- **Syed Ali Mujtaba**  
+- **Vaishnavi Pawar**  
+- **Zeeman Chandra Deka**
 
