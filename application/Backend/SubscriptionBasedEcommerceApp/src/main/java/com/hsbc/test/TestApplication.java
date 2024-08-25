@@ -1,5 +1,6 @@
 package com.hsbc.test;
 
+import com.hsbc.exception.auth.AuthenticationException;
 import com.hsbc.exception.order.InsufficientStockException;
 import com.hsbc.exception.order.OrderNotFoundException;
 import com.hsbc.exception.user.UserAlreadyExistsException;
@@ -190,22 +191,25 @@ public class TestApplication {
 
             User user = userService.getUserByEmail(email);
 
-            if (user.getPassword().equals(password)) {
-                if ("ADMIN".equals(user.getRole())) {
-                    showAdminMenu(scanner);
-                } else {
-                    showUserMenu(scanner, user);
-                }
+            if (!user.getPassword().equals(password)) {
+                throw new AuthenticationException("Invalid password!");
+            }
+
+            if ("ADMIN".equals(user.getRole())) {
+                showAdminMenu(scanner);
             } else {
-                System.out.println("Invalid password!");
+                showUserMenu(scanner, user);
             }
 
         } catch (UserNotFoundException e) {
-            System.out.println(e.getMessage());
+            System.out.println("User not found: " + e.getMessage());
+        } catch (AuthenticationException e) {
+            System.out.println("Authentication failed: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     private static void showAdminMenu(Scanner scanner) {
         while (true) {

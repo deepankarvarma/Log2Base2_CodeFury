@@ -39,11 +39,11 @@ public class SubscriptionService {
         subscriptionDAO.activateSubscription(subscriptionId);
     }
 
-    public List<Subscription> findSubscriptionsByUser(int userId){
+    public List<Subscription> findSubscriptionsByUser(int userId) {
         return subscriptionDAO.findSubscriptionsByUser(userId);
     }
 
-    public List<Subscription> findActiveSubscriptionsByUser(int userId){
+    public List<Subscription> findActiveSubscriptionsByUser(int userId) {
         return subscriptionDAO.findActiveSubscriptionsByUser(userId);
     }
 }
