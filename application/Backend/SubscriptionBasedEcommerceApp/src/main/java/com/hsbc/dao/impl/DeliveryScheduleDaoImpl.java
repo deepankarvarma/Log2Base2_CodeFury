@@ -15,10 +15,17 @@ public class DeliveryScheduleDaoImpl implements DeliveryScheduleDao {
 
     private Connection connection;
 
+    // Default constructor initializes the connection using DBUtils
     public DeliveryScheduleDaoImpl() {
         this.connection = DBUtils.getConn();
     }
 
+    // Constructor that accepts a connection, useful for testing or dependency injection
+    public DeliveryScheduleDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
+
+    // Retrieves a DeliverySchedule by its ID, throws exception if not found
     @Override
     public DeliverySchedule findById(int scheduleId) throws DeliveryScheduleNotFoundException {
         String query = "SELECT * FROM Delivery_Schedules WHERE delivery_schedule_id = ?";
@@ -26,7 +33,7 @@ public class DeliveryScheduleDaoImpl implements DeliveryScheduleDao {
             statement.setInt(1, scheduleId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return mapRowToDeliverySchedule(resultSet);
+                return mapRowToDeliverySchedule(resultSet); // Maps the result set to a DeliverySchedule object
             } else {
                 throw new DeliveryScheduleNotFoundException("DeliverySchedule not found with ID: " + scheduleId);
             }
@@ -35,6 +42,7 @@ public class DeliveryScheduleDaoImpl implements DeliveryScheduleDao {
         }
     }
 
+    // Retrieves all DeliverySchedules from the database
     @Override
     public List<DeliverySchedule> findAllSchedules() {
         List<DeliverySchedule> schedules = new ArrayList<>();
@@ -42,7 +50,7 @@ public class DeliveryScheduleDaoImpl implements DeliveryScheduleDao {
         try (PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                schedules.add(mapRowToDeliverySchedule(resultSet));
+                schedules.add(mapRowToDeliverySchedule(resultSet)); // Adds each schedule to the list
             }
         } catch (SQLException | SubscriptionNotFoundException e) {
             throw new RuntimeException("Error finding all DeliverySchedules", e);
@@ -50,10 +58,12 @@ public class DeliveryScheduleDaoImpl implements DeliveryScheduleDao {
         return schedules;
     }
 
+    // Adds a new DeliverySchedule to the database
     @Override
     public void addDeliverySchedule(DeliverySchedule schedule) {
         String query = "INSERT INTO Delivery_Schedules (subscription_id, delivery_date) VALUES (?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
+            // Sets the details of the delivery schedule in the prepared statement
             statement.setInt(1, schedule.getSubscription().getSubscriptionId());
             statement.setDate(2, Date.valueOf(schedule.getDeliveryDate()));
             statement.executeUpdate();
@@ -62,10 +72,12 @@ public class DeliveryScheduleDaoImpl implements DeliveryScheduleDao {
         }
     }
 
+    // Updates an existing DeliverySchedule in the database, throws exception if not found
     @Override
     public void updateDeliverySchedule(DeliverySchedule schedule) throws DeliveryScheduleNotFoundException {
         String query = "UPDATE Delivery_Schedules SET subscription_id = ?, delivery_date = ? WHERE delivery_schedule_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
+            // Sets the updated delivery schedule details in the prepared statement
             statement.setInt(1, schedule.getSubscription().getSubscriptionId());
             statement.setDate(2, Date.valueOf(schedule.getDeliveryDate()));
             statement.setInt(3, schedule.getDeliveryScheduleId());
@@ -80,6 +92,7 @@ public class DeliveryScheduleDaoImpl implements DeliveryScheduleDao {
         }
     }
 
+    // Deletes a DeliverySchedule by its ID, throws exception if not found
     @Override
     public void deleteDeliverySchedule(int scheduleId) throws DeliveryScheduleNotFoundException {
         String query = "DELETE FROM Delivery_Schedules WHERE delivery_schedule_id = ?";
@@ -94,6 +107,7 @@ public class DeliveryScheduleDaoImpl implements DeliveryScheduleDao {
         }
     }
 
+    // Finds all DeliverySchedules associated with a specific order by the order ID
     @Override
     public List<DeliverySchedule> findSchedulesByOrder(int orderId) {
         List<DeliverySchedule> schedules = new ArrayList<>();
@@ -103,7 +117,7 @@ public class DeliveryScheduleDaoImpl implements DeliveryScheduleDao {
             statement.setInt(1, orderId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                schedules.add(mapRowToDeliverySchedule(resultSet));
+                schedules.add(mapRowToDeliverySchedule(resultSet)); // Adds each schedule to the list
             }
         } catch (SQLException | SubscriptionNotFoundException e) {
             throw new RuntimeException("Error finding DeliverySchedules by Order ID", e);
@@ -111,16 +125,16 @@ public class DeliveryScheduleDaoImpl implements DeliveryScheduleDao {
         return schedules;
     }
 
+    // Finds all DeliverySchedules for a specific delivery date
     @Override
     public List<DeliverySchedule> findSchedulesByDate(LocalDate deliveryDate) {
         List<DeliverySchedule> schedules = new ArrayList<>();
         String query = "SELECT * FROM delivery_schedules WHERE delivery_date = ?";
-//        System.out.println("Executing query: " + query + " for date: " + deliveryDate);
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setDate(1, Date.valueOf(deliveryDate));
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                schedules.add(mapRowToDeliverySchedule(resultSet));
+                schedules.add(mapRowToDeliverySchedule(resultSet)); // Adds each schedule to the list
             }
         } catch (SQLException | SubscriptionNotFoundException e) {
             System.out.println("Error fetching DeliverySchedules: " + e.getMessage());
@@ -129,12 +143,12 @@ public class DeliveryScheduleDaoImpl implements DeliveryScheduleDao {
         return schedules;
     }
 
+    // Helper method to map a ResultSet row to a DeliverySchedule object
     private DeliverySchedule mapRowToDeliverySchedule(ResultSet resultSet) throws SQLException, SubscriptionNotFoundException {
         DeliverySchedule schedule = new DeliverySchedule();
         schedule.setDeliveryScheduleId(resultSet.getInt("delivery_schedule_id"));
         int subscriptionId = resultSet.getInt("subscription_id");
-//        System.out.println("Retrieving subscription with ID: " + subscriptionId);
-        schedule.setSubscription(new SubscriptionDaoImpl().findById(subscriptionId));
+        schedule.setSubscription(new SubscriptionDaoImpl().findById(subscriptionId)); // Fetch and set the associated Subscription
         schedule.setDeliveryDate(resultSet.getDate("delivery_date").toLocalDate());
         return schedule;
     }

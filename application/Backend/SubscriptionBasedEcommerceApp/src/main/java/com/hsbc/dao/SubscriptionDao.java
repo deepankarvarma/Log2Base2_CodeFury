@@ -1,6 +1,7 @@
 package com.hsbc.dao;
 
 import com.hsbc.exception.subscription.SubscriptionNotFoundException;
+import com.hsbc.exception.user.UserNotFoundException;
 import com.hsbc.model.Subscription;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface SubscriptionDao {
 
     void activateSubscription(int subscriptionId) throws SubscriptionNotFoundException;
 
-    List<Subscription> findSubscriptionsByUser(int userId);
+    List<Subscription> findSubscriptionsByUser(int userId) throws UserNotFoundException;
 
     //New method added
     List<Subscription> findActiveSubscriptionsByUser(int userId);

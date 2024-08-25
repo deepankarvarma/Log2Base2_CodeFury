@@ -10,15 +10,21 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CategoryDaoImpl implements CategoryDao {
 
     private Connection connection;
 
+    // Default constructor initializes the connection using DBUtils
     public CategoryDaoImpl() {
         this.connection = DBUtils.getConn();
     }
 
+    // Constructor that accepts a connection, useful for testing or dependency injection
+    public CategoryDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
+
+    // Retrieves a Category by its ID, throws an exception if not found
     @Override
     public Category getCategoryById(int categoryId) throws CategoryNotFoundException {
         String query = "SELECT * FROM categories WHERE category_id = ?";
@@ -26,7 +32,7 @@ public class CategoryDaoImpl implements CategoryDao {
             ps.setInt(1, categoryId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return mapRowToCategory(rs);
+                return mapRowToCategory(rs); // Maps the result set to a Category object
             } else {
                 throw new CategoryNotFoundException("Category with ID " + categoryId + " not found.");
             }
@@ -35,6 +41,7 @@ public class CategoryDaoImpl implements CategoryDao {
         }
     }
 
+    // Retrieves all categories from the database
     @Override
     public List<Category> getAllCategories() {
         String query = "SELECT * FROM categories";
@@ -42,7 +49,7 @@ public class CategoryDaoImpl implements CategoryDao {
         try (PreparedStatement ps = connection.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                categories.add(mapRowToCategory(rs));
+                categories.add(mapRowToCategory(rs)); // Adds each category to the list
             }
         } catch (SQLException e) {
             throw new RuntimeException("Database error: " + e.getMessage());
@@ -50,6 +57,7 @@ public class CategoryDaoImpl implements CategoryDao {
         return categories;
     }
 
+    // Adds a new Category to the database, throws an exception if the category already exists
     @Override
     public void addCategory(Category category) throws CategoryAlreadyExistsException {
         String query = "INSERT INTO categories (category_name, category_description) VALUES (?, ?)";
@@ -58,13 +66,14 @@ public class CategoryDaoImpl implements CategoryDao {
             ps.setString(2, category.getCategoryDescription());
             ps.executeUpdate();
         } catch (SQLException e) {
-            if (e.getSQLState().equals("23505")) { // Duplicate key
+            if (e.getSQLState().equals("23505")) { // SQL state for a duplicate key violation
                 throw new CategoryAlreadyExistsException("Category already exists.");
             }
             throw new RuntimeException("Database error: " + e.getMessage());
         }
     }
 
+    // Updates an existing Category in the database, throws an exception if not found
     @Override
     public void updateCategory(Category category) throws CategoryNotFoundException {
         String query = "UPDATE categories SET category_name = ?, category_description = ? WHERE category_id = ?";
@@ -82,18 +91,18 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     /*
-    * Considerations:
-    * Integrity: This approach assumes that deleting category is a rare operation and handles all linked data to avoid orphaned records.
-    * Performance: Deleting a category with many associated products and dependencies could be slow due to the cascading deletions. However, it ensures the integrity of your database.
-    * Order History: As with the product deletion, deleting all related data (including orders and subscriptions) means that we won’t be able to view past orders related to those products.
-    * */
-
+     * Deletes a category and its associated data from the database.
+     * Considerations:
+     * - Integrity: Ensures all linked data is deleted to avoid orphaned records.
+     * - Performance: Could be slow if the category has many associated products and dependencies due to cascading deletions.
+     * - Order History: Deleting associated data means that past orders related to those products will no longer be viewable.
+     */
     @Override
     public void deleteCategory(int categoryId) throws CategoryNotFoundException {
         try {
             connection.setAutoCommit(false); // Start transaction
 
-            // First, find all products associated with this category
+            // Retrieve all products associated with this category
             String selectProductsQuery = "SELECT product_id FROM products WHERE category_id = ?";
             try (PreparedStatement selectProductsStmt = connection.prepareStatement(selectProductsQuery)) {
                 selectProductsStmt.setInt(1, categoryId);
@@ -160,7 +169,7 @@ public class CategoryDaoImpl implements CategoryDao {
         }
     }
 
-
+    // Helper method to map a ResultSet row to a Category object
     private Category mapRowToCategory(ResultSet rs) throws SQLException {
         Category category = new Category();
         category.setCategoryId(rs.getInt("category_id"));

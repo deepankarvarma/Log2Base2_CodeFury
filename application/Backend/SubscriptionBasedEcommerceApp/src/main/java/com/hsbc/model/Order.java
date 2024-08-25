@@ -7,7 +7,7 @@ public class Order {
     public enum DeliveryStatus {
         PENDING,
         DELIVERED,
-        CANCELLED
+        SHIPPED, CANCELLED
     }
 
     private int orderId;

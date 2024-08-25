@@ -14,6 +14,10 @@ public class OrderItemService {
     public OrderItemService() {
         this.orderItemDAO = DaoFactory.getOrderItemDao();
     }
+    // Constructor for test use
+    public OrderItemService(OrderItemDao orderItemDAO) {
+        this.orderItemDAO = orderItemDAO;
+    }
 
     public OrderItem getOrderItemById(int orderItemId) throws OrderItemNotFoundException {
         return orderItemDAO.findById(orderItemId);

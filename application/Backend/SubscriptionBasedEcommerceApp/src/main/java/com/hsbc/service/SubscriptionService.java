@@ -2,6 +2,7 @@ package com.hsbc.service;
 
 import com.hsbc.dao.SubscriptionDao;
 import com.hsbc.exception.subscription.SubscriptionNotFoundException;
+import com.hsbc.exception.user.UserNotFoundException;
 import com.hsbc.factory.DaoFactory;
 import com.hsbc.model.Subscription;
 
@@ -39,7 +40,7 @@ public class SubscriptionService {
         subscriptionDAO.activateSubscription(subscriptionId);
     }
 
-    public List<Subscription> findSubscriptionsByUser(int userId) {
+    public List<Subscription> findSubscriptionsByUser(int userId) throws UserNotFoundException {
         return subscriptionDAO.findSubscriptionsByUser(userId);
     }
 

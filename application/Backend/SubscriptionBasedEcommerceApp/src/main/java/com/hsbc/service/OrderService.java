@@ -27,6 +27,13 @@ public class OrderService {
         this.productDAO = DaoFactory.getProductDao();
     }
 
+    // Constructor for test use
+    public OrderService(OrderDao orderDAO, OrderItemDao orderItemDAO, ProductDao productDAO) {
+        this.orderDAO = orderDAO;
+        this.orderItemDAO = orderItemDAO;
+        this.productDAO = productDAO;
+    }
+
     public Order getOrderById(int orderId) throws OrderNotFoundException {
         return orderDAO.findById(orderId);
     }

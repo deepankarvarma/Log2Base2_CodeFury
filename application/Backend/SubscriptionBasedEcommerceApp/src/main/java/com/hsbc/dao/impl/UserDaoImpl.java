@@ -18,6 +18,11 @@ public class UserDaoImpl implements UserDao {
         this.connection = DBUtils.getConn();
     }
 
+    // Add this method for testing
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
     @Override
     public User findById(int userId) throws UserNotFoundException {
         String query = "SELECT * FROM users WHERE user_id = ?";
@@ -78,7 +83,7 @@ public class UserDaoImpl implements UserDao {
             ps.setString(7, user.getRole());  // Set the role
             ps.executeUpdate();
         } catch (SQLException e) {
-            if (e.getSQLState().equals("23505")) { // Duplicate key
+            if (e.getSQLState().equals("23000")) { // Duplicate key for MySQL
                 throw new UserAlreadyExistsException("User already exists.");
             }
             throw new RuntimeException("Database error: " + e.getMessage());
@@ -144,7 +149,14 @@ public class UserDaoImpl implements UserDao {
         user.setEmail(rs.getString("user_email"));
         user.setPhoneNumber(rs.getString("user_phone_number"));
         user.setAddress(rs.getString("user_address"));
-        user.setRegistrationDate(rs.getDate("user_registration_date").toLocalDate());
+
+        Date registrationDate = rs.getDate("user_registration_date");
+        if (registrationDate != null) {
+            user.setRegistrationDate(registrationDate.toLocalDate());
+        } else {
+            user.setRegistrationDate(null); // Or handle this case as needed
+        }
+
         user.setRole(rs.getString("role")); // Map the role
         return user;
     }
